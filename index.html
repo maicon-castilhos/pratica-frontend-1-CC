@@ -6,6 +6,7 @@
   <meta name="description" content="ONG Sementes do Amanhã: iniciativas solidárias em educação, alimentação e geração de renda. Seja voluntário ou doe.">
   <meta name="theme-color" content="#0b6e4f">
   <title>Sementes do Amanhã — Iniciativas solidárias que transformam comunidades</title>
+  <link rel="icon" type="image/svg+xml" href="assets/img/icones/sementes_do_amanha_logo.svg">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -15,12 +16,10 @@
   <header class="site-header">
     <div class="container header-inner">
       <a class="logo" href="index.html" aria-label="Sementes do Amanhã — página inicial">
-        <svg class="logo-mark" width="40" height="40" viewBox="0 0 48 48" role="img" aria-hidden="true" focusable="false">
-          <circle cx="24" cy="24" r="23" fill="none" stroke="currentColor" stroke-width="2"/>
-          <path d="M24 34c0-8 5-13 12-14-1 8-5 13-12 14Zm0 0c0-8-5-13-12-14 1 8 5 13 12 14Z" fill="currentColor"/>
-          <path d="M24 36V22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-        <span class="logo-text">Sementes <strong>do Amanhã</strong></span>
+        <img src="assets/img/icones/sementes_do_amanha_logo.svg"
+             alt="Logotipo da ONG Sementes do Amanhã"
+             width="160" height="48"
+             loading="eager" decoding="async">
       </a>
 
       <nav class="site-nav" aria-label="Navegação principal">
@@ -52,9 +51,16 @@
         </div>
 
         <figure class="hero-figura">
-          <img src="assets/img/comunidade.svg"
+          <img src="assets/img/hero/comunidade-800.jpg"
+               srcset="assets/img/hero/comunidade-480.jpg 480w,
+                       assets/img/hero/comunidade-800.jpg 800w,
+                       assets/img/hero/comunidade-1200.jpg 1200w"
+               sizes="(max-width: 600px) 100vw,
+                      (max-width: 1023px) 90vw,
+                      640px"
                alt="Voluntários e moradores reunidos em círculo durante uma oficina comunitária ao ar livre."
-               width="640" height="420" loading="eager">
+               width="800" height="525"
+               loading="eager" fetchpriority="high" decoding="async">
           <figcaption>Oficina de horta comunitária — Núcleo Vila Nova, 2024.</figcaption>
         </figure>
       </div>
@@ -146,9 +152,14 @@
       <div class="container">
         <h2 id="titulo-depoimento" class="sr-only">Depoimento</h2>
         <blockquote class="citacao">
-          <p>“Entrei como aluna do reforço e hoje sou monitora da mesma turma. O projeto não me deu só aula, me deu direção.”</p>
+          <img class="avatar"
+               src="assets/img/avatar/avatar-chandler.jpg"
+               alt="Retrato de Chandler Mascarenhas"
+               width="72" height="72"
+               loading="lazy" decoding="async">
+          <p>“Entrei como aluno do reforço e hoje sou monitor da mesma turma. O projeto não me deu só aula, me deu direção.”</p>
           <footer>
-            — <cite>Mariana Alves</cite>, moradora da Vila Nova,
+            — <cite>Chandler Mascarenhas</cite>, morador da Vila Nova,
             <time datetime="2024-08">agosto de 2024</time>
           </footer>
         </blockquote>
@@ -159,6 +170,7 @@
 
   <footer class="site-footer">
     <div class="container footer-grid">
+
       <section aria-labelledby="titulo-contato">
         <h2 id="titulo-contato">Contato</h2>
         <address>
@@ -178,10 +190,42 @@
         </ul>
       </nav>
 
+      <section aria-labelledby="titulo-redes">
+        <h2 id="titulo-redes">Redes sociais</h2>
+        <ul class="redes-sociais">
+          <li>
+            <a href="https://facebook.com/sementesdoamanha" aria-label="Facebook da Sementes do Amanhã" target="_blank" rel="noopener noreferrer">
+              <img src="assets/img/og/facebook.png" alt="" width="32" height="32" loading="lazy" decoding="async">
+            </a>
+          </li>
+          <li>
+            <a href="https://instagram.com/sementesdoamanha" aria-label="Instagram da Sementes do Amanhã" target="_blank" rel="noopener noreferrer">
+              <img src="assets/img/og/instagram.png" alt="" width="32" height="32" loading="lazy" decoding="async">
+            </a>
+          </li>
+          <li>
+            <a href="https://linkedin.com/company/sementesdoamanha" aria-label="LinkedIn da Sementes do Amanhã" target="_blank" rel="noopener noreferrer">
+              <img src="assets/img/og/linkedin.png" alt="" width="32" height="32" loading="lazy" decoding="async">
+            </a>
+          </li>
+          <li>
+            <a href="https://youtube.com/@sementesdoamanha" aria-label="YouTube da Sementes do Amanhã" target="_blank" rel="noopener noreferrer">
+              <img src="assets/img/og/youtube.png" alt="" width="32" height="32" loading="lazy" decoding="async">
+            </a>
+          </li>
+          <li>
+            <a href="https://wa.me/551140028922" aria-label="WhatsApp da Sementes do Amanhã" target="_blank" rel="noopener noreferrer">
+              <img src="assets/img/og/whatsapp.png" alt="" width="32" height="32" loading="lazy" decoding="async">
+            </a>
+          </li>
+        </ul>
+      </section>
+
       <section aria-labelledby="titulo-transparencia-footer">
         <h2 id="titulo-transparencia-footer">Transparência</h2>
         <p>CNPJ 12.345.678/0001-90<br>Organização sem fins lucrativos.</p>
       </section>
+
     </div>
 
     <p class="copyright container">

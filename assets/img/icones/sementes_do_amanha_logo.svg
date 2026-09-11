@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="220" viewBox="0 0 900 220" role="img" aria-labelledby="title desc">
+  <title id="title">Sementes do Amanhã</title>
+  <desc id="desc">Logotipo verde com símbolo de uma folha dentro de um círculo e o texto Sementes do Amanhã.</desc>
+
+  <!-- Símbolo -->
+  <g transform="translate(28,20)">
+    <circle cx="90" cy="90" r="76"
+            fill="none"
+            stroke="#087A4B"
+            stroke-width="7"/>
+
+    <!-- Folha -->
+    <path d="M90 132
+             C88 111, 89 91, 96 74
+             C105 53, 124 43, 143 42
+             C144 62, 137 81, 123 94
+             C113 103, 101 108, 91 110
+             L91 132 Z"
+          fill="#087A4B"/>
+
+    <!-- Caule -->
+    <path d="M90 132 C90 104, 100 81, 120 61"
+          fill="none"
+          stroke="#087A4B"
+          stroke-width="6"
+          stroke-linecap="round"/>
+
+    <!-- Pequena folha lateral -->
+    <path d="M91 103
+             C78 99, 67 91, 63 78
+             C77 77, 88 83, 94 93
+             C96 97, 96 101, 95 104 Z"
+          fill="#087A4B"/>
+  </g>
+
+  <!-- Nome -->
+  <text x="225" y="127"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="58"
+        font-weight="700"
+        letter-spacing="-1.2"
+        fill="#087A4B">Sementes do Amanhã</text>
+</svg>
