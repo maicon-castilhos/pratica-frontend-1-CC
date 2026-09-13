@@ -28,12 +28,12 @@ pratica-frontend-1-CC/
 
 O que foi implementado
 
-## HTML5 semântico
+## HTML5 semântico ##
 Uso de header, nav, main, section, article, aside, footer, figure, figcaption, address, blockquote, cite, dl, table
 
 Hierarquia de títulos h1 → h2 → h3 sem saltos
 
-Um único <h1> por página, vinculado a <section> via aria-labelledby
+Um único h1 por página, vinculado a <section> via aria-labelledby
 
 Acessibilidade
 skip-link para pular ao conteúdo principal
@@ -53,7 +53,7 @@ Foco visível com :focus-visible
 Validação em camadas
 HTML nativo: required, type, maxlength, inputmode, autocomplete
 
-## JavaScript: 
+## JavaScript: ##
 
 máscaras em tempo real para CPF, telefone e CEP
 
