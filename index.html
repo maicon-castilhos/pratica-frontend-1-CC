@@ -3,235 +3,278 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="ONG Sementes do Amanhã: iniciativas solidárias em educação, alimentação e geração de renda. Seja voluntário ou doe.">
+  <meta name="description" content="ONG Sementes do Amanhã: educação, segurança alimentar e geração de renda. Doe ou seja voluntário.">
   <meta name="theme-color" content="#0b6e4f">
-  <title>Sementes do Amanhã — Iniciativas solidárias que transformam comunidades</title>
+  <title>Sementes do Amanhã — Transformando comunidades</title>
   <link rel="icon" type="image/svg+xml" href="assets/img/icones/sementes_do_amanha_logo.svg">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-  <a class="skip-link" href="#conteudo">Pular para o conteúdo principal</a>
+  <a class="skip-link" href="#main">Pular para o conteúdo principal</a>
 
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="logo" href="index.html" aria-label="Sementes do Amanhã — página inicial">
-        <img src="assets/img/icones/sementes_do_amanha_logo.svg"
-             alt="Logotipo da ONG Sementes do Amanhã"
-             width="160" height="48"
-             loading="eager" decoding="async">
+  <header class="header">
+    <div class="container header__inner">
+      <a class="header__logo" href="index.html" aria-label="Sementes do Amanhã — página inicial">
+        <img src="assets/img/icones/sementes_do_amanha_logo.svg" alt="Logotipo Sementes do Amanhã" width="160" height="44">
       </a>
 
-      <nav class="site-nav" aria-label="Navegação principal">
-        <ul>
-          <li><a href="index.html" aria-current="page">Início</a></li>
-          <li><a href="projetos.html">Iniciativas</a></li>
-          <li><a href="cadastro.html">Seja Voluntário</a></li>
+      <button class="header__toggle" type="button" aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menu">
+        <span class="sr-only">Menu</span>
+      </button>
+
+      <nav class="nav" id="menu-principal" data-open="false" aria-label="Navegação principal">
+        <ul class="nav__list">
+          <li><a class="nav__link" href="index.html" aria-current="page">Início</a></li>
+          <li><a class="nav__link" href="projetos.html">Projetos</a></li>
+          <li><a class="nav__link" href="doacao.html">Doe Agora</a></li>
+          <li><a class="nav__link nav__link--cta" href="voluntario.html">Seja Voluntário</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <main id="conteudo">
+  <main id="main">
 
-    <section class="hero" aria-labelledby="titulo-hero">
-      <div class="container hero-grid">
-        <div class="hero-texto">
-          <p class="eyebrow">Terceiro setor • Desde 2009</p>
-          <h1 id="titulo-hero">Transformamos engajamento em oportunidades reais</h1>
-          <p class="lead">
-            Somos uma organização sem fins lucrativos que atua em comunidades vulneráveis
-            com projetos de educação, segurança alimentar e geração de renda.
-            Todo recurso é aplicado com transparência — e todo voluntário é parte da mudança.
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero__grid">
+        <div>
+          <span class="hero__eyebrow">Desde 2009 • Terceiro setor</span>
+          <h1 class="hero__title" id="hero-title">
+            Transformamos <em>engajamento</em> em oportunidades reais
+          </h1>
+          <p class="hero__lead">
+            Atuamos em comunidades vulneráveis com projetos de educação,
+            segurança alimentar e geração de renda. Cada doação e cada hora
+            voluntária viram impacto mensurável.
           </p>
-          <p class="hero-acoes">
-            <a class="btn btn-primario" href="cadastro.html">Quero ser voluntário</a>
-            <a class="btn btn-secundario" href="projetos.html">Conhecer as iniciativas</a>
-          </p>
+          <div class="hero__actions">
+            <a class="btn btn--primary btn--lg" href="doacao.html">Fazer uma doação</a>
+            <a class="btn btn--secondary btn--lg" href="projetos.html">Ver projetos</a>
+          </div>
         </div>
-
-        <figure class="hero-figura">
+        <figure class="hero__figure">
           <img src="assets/img/hero/comunidade-800.jpg"
                srcset="assets/img/hero/comunidade-480.jpg 480w,
                        assets/img/hero/comunidade-800.jpg 800w,
                        assets/img/hero/comunidade-1200.jpg 1200w"
-               sizes="(max-width: 600px) 100vw,
-                      (max-width: 1023px) 90vw,
-                      640px"
-               alt="Voluntários e moradores reunidos em círculo durante uma oficina comunitária ao ar livre."
-               width="800" height="525"
+               sizes="(max-width: 900px) 100vw, 560px"
+               alt="Voluntários e moradores reunidos em círculo em oficina comunitária ao ar livre."
+               width="800" height="600"
                loading="eager" fetchpriority="high" decoding="async">
-          <figcaption>Oficina de horta comunitária — Núcleo Vila Nova, 2024.</figcaption>
+          <figcaption class="hero__caption">Oficina de horta comunitária — Vila Nova, 2024.</figcaption>
         </figure>
       </div>
     </section>
 
-    <section class="secao" id="sobre" aria-labelledby="titulo-sobre">
+    <!-- SOBRE -->
+    <section class="section" aria-labelledby="sobre-title">
       <div class="container">
-        <header class="secao-cabecalho">
-          <h2 id="titulo-sobre">Quem somos</h2>
-          <p class="secao-descricao">Uma rede de pessoas que acredita que mudança social se constrói com método, escuta e continuidade.</p>
+        <header class="section__header">
+          <h2 class="section__title" id="sobre-title">Quem somos</h2>
+          <p class="section__subtitle">
+            Uma rede que acredita em mudança construída com método, escuta e continuidade.
+          </p>
         </header>
 
-        <div class="grid-3">
+        <div class="grid grid--3">
           <article class="card">
-            <h3>Missão</h3>
-            <p>Ampliar o acesso a educação, alimentação digna e trabalho para famílias em situação de vulnerabilidade social.</p>
+            <span class="card__icon" aria-hidden="true">🎯</span>
+            <h3 class="card__title">Missão</h3>
+            <p class="card__text">Ampliar o acesso a educação, alimentação digna e trabalho.</p>
           </article>
           <article class="card">
-            <h3>Visão</h3>
-            <p>Comunidades autônomas, onde cada pessoa tenha condições reais de decidir sobre o próprio futuro.</p>
+            <span class="card__icon" aria-hidden="true">🌱</span>
+            <h3 class="card__title">Visão</h3>
+            <p class="card__text">Comunidades autônomas, capazes de decidir sobre o próprio futuro.</p>
           </article>
           <article class="card">
-            <h3>Valores</h3>
-            <ul class="lista-check">
-              <li>Transparência radical</li>
-              <li>Protagonismo local</li>
-              <li>Equidade e respeito</li>
-              <li>Impacto mensurável</li>
-            </ul>
+            <span class="card__icon" aria-hidden="true">💚</span>
+            <h3 class="card__title">Valores</h3>
+            <p class="card__text">Transparência, protagonismo local, equidade e impacto mensurável.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="secao secao-destaque" aria-labelledby="titulo-impacto">
+    <!-- PROJETOS EM DESTAQUE -->
+    <section class="section section--soft" aria-labelledby="destaques-title">
       <div class="container">
-        <h2 id="titulo-impacto">Nosso impacto em números</h2>
-        <p class="secao-descricao">
-          Dados consolidados do último exercício, auditados e publicados em nosso
-          <a href="projetos.html#transparencia">relatório de transparência</a>.
-        </p>
+        <header class="section__header section__header--center">
+          <h2 class="section__title" id="destaques-title">Projetos em destaque</h2>
+          <p class="section__subtitle">Iniciativas contínuas, avaliadas por indicadores claros.</p>
+        </header>
 
-        <dl class="indicadores">
-          <div class="indicador">
+        <div class="grid grid--3">
+          <article class="card project-card">
+            <span class="project-card__badge project-card__badge--active">Ativo</span>
+            <h3 class="card__title">Educação que abre portas</h3>
+            <p class="card__text">Reforço escolar e preparação para o mercado de trabalho.</p>
+            <dl class="project-card__meta">
+              <dt>Público</dt><dd>120 estudantes</dd>
+              <dt>Local</dt><dd>Vila Nova</dd>
+            </dl>
+          </article>
+
+          <article class="card project-card">
+            <span class="project-card__badge project-card__badge--active">Ativo</span>
+            <h3 class="card__title">Segurança alimentar</h3>
+            <p class="card__text">Hortas comunitárias e distribuição de cestas.</p>
+            <dl class="project-card__meta">
+              <dt>Público</dt><dd>300 famílias</dd>
+              <dt>Local</dt><dd>5 comunidades</dd>
+            </dl>
+          </article>
+
+          <article class="card project-card">
+            <span class="project-card__badge project-card__badge--active">Ativo</span>
+            <h3 class="card__title">Geração de renda</h3>
+            <p class="card__text">Capacitação e acompanhamento para formalização.</p>
+            <dl class="project-card__meta">
+              <dt>Público</dt><dd>80 mulheres</dd>
+              <dt>Local</dt><dd>Núcleo Central</dd>
+            </dl>
+          </article>
+        </div>
+
+        <p class="text-center mt-6">
+          <a class="btn btn--secondary" href="projetos.html">Ver todos os projetos</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- IMPACTO -->
+    <section class="section" aria-labelledby="impacto-title">
+      <div class="container">
+        <header class="section__header section__header--center">
+          <h2 class="section__title" id="impacto-title">Nosso impacto em números</h2>
+          <p class="section__subtitle">Dados auditados do último exercício.</p>
+        </header>
+
+        <dl class="stats">
+          <div class="stat">
             <dt>Pessoas atendidas</dt>
-            <dd><span class="numero">4.820</span></dd>
+            <dd data-count="4820">0</dd>
           </div>
-          <div class="indicador">
+          <div class="stat">
             <dt>Voluntários ativos</dt>
-            <dd><span class="numero">312</span></dd>
+            <dd data-count="312">0</dd>
           </div>
-          <div class="indicador">
+          <div class="stat">
             <dt>Projetos em andamento</dt>
-            <dd><span class="numero">7</span></dd>
+            <dd data-count="7">0</dd>
           </div>
-          <div class="indicador">
+          <div class="stat">
             <dt>Comunidades parceiras</dt>
-            <dd><span class="numero">12</span></dd>
+            <dd data-count="12">0</dd>
           </div>
         </dl>
       </div>
     </section>
 
-    <section class="secao" aria-labelledby="titulo-ajudar">
+    <!-- DEPOIMENTOS (carrossel) -->
+    <section class="section section--soft" aria-labelledby="depoimentos-title">
       <div class="container">
-        <h2 id="titulo-ajudar">Como você pode ajudar</h2>
+        <header class="section__header section__header--center">
+          <h2 class="section__title" id="depoimentos-title">Quem viveu, conta</h2>
+        </header>
 
-        <div class="grid-3">
-          <article class="card card-acao">
-            <h3>Doação recorrente</h3>
-            <p>A partir de R$ 30/mês você sustenta uma turma de reforço escolar por um semestre.</p>
-            <a class="link-seta" href="cadastro.html">Quero doar</a>
-          </article>
-          <article class="card card-acao">
-            <h3>Voluntariado</h3>
-            <p>Doe horas de conhecimento: aulas, mentoria, apoio administrativo ou comunicação.</p>
-            <a class="link-seta" href="cadastro.html">Quero ser voluntário</a>
-          </article>
-          <article class="card card-acao">
-            <h3>Parceria institucional</h3>
-            <p>Empresas podem apoiar projetos específicos com recursos, materiais ou equipe.</p>
-            <a class="link-seta" href="cadastro.html">Falar com a equipe</a>
-          </article>
+        <div class="carousel" data-carousel>
+          <div class="carousel__viewport">
+            <div class="carousel__track" data-track>
+              <blockquote class="carousel__slide">
+                <img src="assets/img/avatar/avatar-chandler.jpg" alt="Retrato de Chandler Mascarenhas" width="72" height="72" loading="lazy">
+                <div>
+                  <p class="carousel__quote">“Entrei como aluno do reforço e hoje sou monitor da mesma turma.”</p>
+                  <cite class="carousel__author">— Chandler Mascarenhas, Vila Nova</cite>
+                </div>
+              </blockquote>
+
+              <blockquote class="carousel__slide">
+                <img src="assets/img/avatar/avatar-ana.jpg" alt="Retrato de Ana Ribeiro" width="72" height="72" loading="lazy">
+                <div>
+                  <p class="carousel__quote">“A horta comunitária virou fonte de renda e orgulho para a nossa rua.”</p>
+                  <cite class="carousel__author">— Ana Ribeiro, Jardim das Flores</cite>
+                </div>
+              </blockquote>
+
+              <blockquote class="carousel__slide">
+                <img src="assets/img/avatar/avatar-joao.jpg" alt="Retrato de João Pereira" width="72" height="72" loading="lazy">
+                <div>
+                  <p class="carousel__quote">“Como voluntário, aprendi mais do que ensinei. Recomendo demais.”</p>
+                  <cite class="carousel__author">— João Pereira, voluntário</cite>
+                </div>
+              </blockquote>
+            </div>
+          </div>
+
+          <div class="carousel__controls">
+            <button class="carousel__btn" type="button" data-prev aria-label="Depoimento anterior">‹</button>
+            <div class="carousel__dots" data-dots></div>
+            <button class="carousel__btn" type="button" data-next aria-label="Próximo depoimento">›</button>
+          </div>
         </div>
       </div>
     </section>
 
-    <aside class="secao secao-aside" aria-labelledby="titulo-depoimento">
-      <div class="container">
-        <h2 id="titulo-depoimento" class="sr-only">Depoimento</h2>
-        <blockquote class="citacao">
-          <img class="avatar"
-               src="assets/img/avatar/avatar-chandler.jpg"
-               alt="Retrato de Chandler Mascarenhas"
-               width="72" height="72"
-               loading="lazy" decoding="async">
-          <p>“Entrei como aluno do reforço e hoje sou monitor da mesma turma. O projeto não me deu só aula, me deu direção.”</p>
-          <footer>
-            — <cite>Chandler Mascarenhas</cite>, morador da Vila Nova,
-            <time datetime="2024-08">agosto de 2024</time>
-          </footer>
-        </blockquote>
+    <!-- CTA FINAL -->
+    <section class="section" aria-labelledby="cta-title">
+      <div class="container text-center">
+        <h2 class="section__title" id="cta-title">Pronto para fazer parte?</h2>
+        <p class="section__subtitle mb-4">
+          Escolha como quer contribuir. Toda ajuda vira impacto real.
+        </p>
+        <div class="hero__actions" style="justify-content:center">
+          <a class="btn btn--primary btn--lg" href="doacao.html">Doar agora</a>
+          <a class="btn btn--secondary btn--lg" href="voluntario.html">Ser voluntário</a>
+        </div>
       </div>
-    </aside>
+    </section>
 
   </main>
 
-  <footer class="site-footer">
-    <div class="container footer-grid">
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <h2 class="footer__title">Contato</h2>
+          <address>
+            Rua das Acácias, 240 — Vila Nova<br>
+            São Paulo/SP — CEP 01234-567<br>
+            <a href="mailto:contato@sementesdoamanha.org.br">contato@sementesdoamanha.org.br</a><br>
+            <a href="tel:+551140028922">(11) 4002-8922</a>
+          </address>
+        </div>
 
-      <section aria-labelledby="titulo-contato">
-        <h2 id="titulo-contato">Contato</h2>
-        <address>
-          Rua das Acácias, 240 — Vila Nova<br>
-          São Paulo/SP — CEP 01234-567<br>
-          <a href="mailto:contato@sementesdoamanha.org.br">contato@sementesdoamanha.org.br</a><br>
-          <a href="tel:+551140028922">(11) 4002-8922</a>
-        </address>
-      </section>
+        <nav aria-labelledby="footer-mapa">
+          <h2 class="footer__title" id="footer-mapa">Mapa do site</h2>
+          <ul class="footer__list">
+            <li><a href="index.html">Início</a></li>
+            <li><a href="projetos.html">Projetos</a></li>
+            <li><a href="doacao.html">Doe Agora</a></li>
+            <li><a href="voluntario.html">Seja Voluntário</a></li>
+          </ul>
+        </nav>
 
-      <nav aria-labelledby="titulo-mapa">
-        <h2 id="titulo-mapa">Mapa do site</h2>
-        <ul>
-          <li><a href="index.html">Início</a></li>
-          <li><a href="projetos.html">Iniciativas solidárias</a></li>
-          <li><a href="cadastro.html">Cadastro de voluntários</a></li>
-        </ul>
-      </nav>
+        <div>
+          <h2 class="footer__title">Redes sociais</h2>
+          <ul class="social">
+            <li><a class="social__link" href="#" aria-label="Facebook" target="_blank" rel="noopener"><img src="assets/img/og/facebook.png" alt="" width="20" height="20" loading="lazy"></a></li>
+            <li><a class="social__link" href="#" aria-label="Instagram" target="_blank" rel="noopener"><img src="assets/img/og/instagram.png" alt="" width="20" height="20" loading="lazy"></a></li>
+            <li><a class="social__link" href="#" aria-label="LinkedIn" target="_blank" rel="noopener"><img src="assets/img/og/linkedin.png" alt="" width="20" height="20" loading="lazy"></a></li>
+            <li><a class="social__link" href="#" aria-label="YouTube" target="_blank" rel="noopener"><img src="assets/img/og/youtube.png" alt="" width="20" height="20" loading="lazy"></a></li>
+            <li><a class="social__link" href="#" aria-label="WhatsApp" target="_blank" rel="noopener"><img src="assets/img/og/whatsapp.png" alt="" width="20" height="20" loading="lazy"></a></li>
+          </ul>
+        </div>
+      </div>
 
-      <section aria-labelledby="titulo-redes">
-        <h2 id="titulo-redes">Redes sociais</h2>
-        <ul class="redes-sociais">
-          <li>
-            <a href="https://facebook.com/sementesdoamanha" aria-label="Facebook da Sementes do Amanhã" target="_blank" rel="noopener noreferrer">
-              <img src="assets/img/og/facebook.png" alt="" width="32" height="32" loading="lazy" decoding="async">
-            </a>
-          </li>
-          <li>
-            <a href="https://instagram.com/sementesdoamanha" aria-label="Instagram da Sementes do Amanhã" target="_blank" rel="noopener noreferrer">
-              <img src="assets/img/og/instagram.png" alt="" width="32" height="32" loading="lazy" decoding="async">
-            </a>
-          </li>
-          <li>
-            <a href="https://linkedin.com/company/sementesdoamanha" aria-label="LinkedIn da Sementes do Amanhã" target="_blank" rel="noopener noreferrer">
-              <img src="assets/img/og/linkedin.png" alt="" width="32" height="32" loading="lazy" decoding="async">
-            </a>
-          </li>
-          <li>
-            <a href="https://youtube.com/@sementesdoamanha" aria-label="YouTube da Sementes do Amanhã" target="_blank" rel="noopener noreferrer">
-              <img src="assets/img/og/youtube.png" alt="" width="32" height="32" loading="lazy" decoding="async">
-            </a>
-          </li>
-          <li>
-            <a href="https://wa.me/551140028922" aria-label="WhatsApp da Sementes do Amanhã" target="_blank" rel="noopener noreferrer">
-              <img src="assets/img/og/whatsapp.png" alt="" width="32" height="32" loading="lazy" decoding="async">
-            </a>
-          </li>
-        </ul>
-      </section>
-
-      <section aria-labelledby="titulo-transparencia-footer">
-        <h2 id="titulo-transparencia-footer">Transparência</h2>
-        <p>CNPJ 12.345.678/0001-90<br>Organização sem fins lucrativos.</p>
-      </section>
-
+      <p class="footer__bottom">© 2025 Sementes do Amanhã. CNPJ 12.345.678/0001-90.</p>
     </div>
-
-    <p class="copyright container">
-      <small>© 2025 Sementes do Amanhã. Conteúdo sob licença CC BY-SA 4.0.</small>
-    </p>
   </footer>
 
+  <div class="toast" role="status" aria-live="polite" data-toast></div>
+
+  <script src="js/main.js" defer></script>
 </body>
 </html>

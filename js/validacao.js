@@ -1,167 +1,209 @@
+/* =========================================================
+   validacao.js — máscaras + validação customizada
+   - CPF (com dígitos verificadores)
+   - Telefone e CEP
+   - Cartão de crédito (Luhn)
+   - Barra de progresso dos formulários
+   ========================================================= */
 (function () {
   'use strict';
 
-  const form = document.getElementById('form-cadastro');
-  if (!form) return;
-
-  const cpf = form.querySelector('#cpf');
-  const telefone = form.querySelector('#telefone');
-  const cep = form.querySelector('#cep');
-
-  /* ---------- Máscaras ---------- */
-  function mascaraCPF(valor) {
-    valor = valor.replace(/\D/g, '').slice(0, 11);
-    return valor
+  /* ---------------------------------------------------------
+     MÁSCARAS
+     --------------------------------------------------------- */
+  const maskCPF = (v) =>
+    v.replace(/\D/g, '').slice(0, 11)
       .replace(/(\d{3})(\d)/, '$1.$2')
       .replace(/(\d{3})(\d)/, '$1.$2')
       .replace(/(\d{3})(\d{1,2})$/, '$1-$2');
-  }
 
-  function mascaraTelefone(valor) {
-    valor = valor.replace(/\D/g, '').slice(0, 11);
-    if (valor.length <= 10) {
-      return valor
-        .replace(/(\d{2})(\d)/, '($1) $2')
-        .replace(/(\d{4})(\d)/, '$1-$2');
-    }
-    return valor
-      .replace(/(\d{2})(\d)/, '($1) $2')
-      .replace(/(\d{5})(\d)/, '$1-$2');
-  }
+  const maskTel = (v) => {
+    v = v.replace(/\D/g, '').slice(0, 11);
+    return v.length <= 10
+      ? v.replace(/(\d{2})(\d)/, '($1) $2').replace(/(\d{4})(\d)/, '$1-$2')
+      : v.replace(/(\d{2})(\d)/, '($1) $2').replace(/(\d{5})(\d)/, '$1-$2');
+  };
 
-  function mascaraCEP(valor) {
-    valor = valor.replace(/\D/g, '').slice(0, 8);
-    return valor.replace(/(\d{5})(\d)/, '$1-$2');
-  }
+  const maskCEP = (v) =>
+    v.replace(/\D/g, '').slice(0, 8).replace(/(\d{5})(\d)/, '$1-$2');
 
-  /* ---------- Validações ---------- */
-  function validaCPF(cpfTexto) {
-    const cpf = cpfTexto.replace(/\D/g, '');
+  const maskCartao = (v) =>
+    v.replace(/\D/g, '').slice(0, 16).replace(/(\d{4})(?=\d)/g, '$1 ').trim();
+
+  const maskValidade = (v) =>
+    v.replace(/\D/g, '').slice(0, 4).replace(/(\d{2})(\d)/, '$1/$2');
+
+  /* ---------------------------------------------------------
+     VALIDAÇÕES
+     --------------------------------------------------------- */
+  const validaCPF = (txt) => {
+    const cpf = txt.replace(/\D/g, '');
     if (cpf.length !== 11 || /^(\d)\1{10}$/.test(cpf)) return false;
 
-    let soma = 0;
-    for (let i = 0; i < 9; i++) soma += parseInt(cpf.charAt(i)) * (10 - i);
-    let resto = (soma * 10) % 11;
-    if (resto === 10 || resto === 11) resto = 0;
-    if (resto !== parseInt(cpf.charAt(9))) return false;
+    let s = 0;
+    for (let i = 0; i < 9; i++) s += parseInt(cpf[i]) * (10 - i);
+    let r = (s * 10) % 11;
+    if (r === 10 || r === 11) r = 0;
+    if (r !== parseInt(cpf[9])) return false;
 
-    soma = 0;
-    for (let i = 0; i < 10; i++) soma += parseInt(cpf.charAt(i)) * (11 - i);
-    resto = (soma * 10) % 11;
-    if (resto === 10 || resto === 11) resto = 0;
-    if (resto !== parseInt(cpf.charAt(10))) return false;
+    s = 0;
+    for (let i = 0; i < 10; i++) s += parseInt(cpf[i]) * (11 - i);
+    r = (s * 10) % 11;
+    if (r === 10 || r === 11) r = 0;
+    return r === parseInt(cpf[10]);
+  };
 
-    return true;
-  }
+  const validaCartao = (num) => {
+    const n = num.replace(/\D/g, '');
+    if (n.length < 13 || n.length > 19) return false;
+    let soma = 0, alt = false;
+    for (let i = n.length - 1; i >= 0; i--) {
+      let d = parseInt(n[i]);
+      if (alt) { d *= 2; if (d > 9) d -= 9; }
+      soma += d;
+      alt = !alt;
+    }
+    return soma % 10 === 0;
+  };
 
-  function validaTelefone(telTexto) {
-    const n = telTexto.replace(/\D/g, '');
-    return n.length === 10 || n.length === 11;
-  }
+  /* ---------------------------------------------------------
+     APLICAÇÃO DAS MÁSCARAS
+     --------------------------------------------------------- */
+  const bindMask = (selector, fn) => {
+    document.querySelectorAll(selector).forEach((el) => {
+      el.addEventListener('input', (e) => {
+        e.target.value = fn(e.target.value);
+      });
+    });
+  };
 
-  function validaCEP(cepTexto) {
-    return cepTexto.replace(/\D/g, '').length === 8;
-  }
+  bindMask('#doador-cpf, #v-cpf', maskCPF);
+  bindMask('#v-telefone', maskTel);
+  bindMask('#v-cep', maskCEP);
+  bindMask('#cartao-numero', maskCartao);
+  bindMask('#cartao-validade', maskValidade);
 
-  function setCustomValidity(input, msg) {
+  /* ---------------------------------------------------------
+     VALIDAÇÃO CUSTOMIZADA (setCustomValidity)
+     --------------------------------------------------------- */
+  const setError = (input, msg) => {
     input.setCustomValidity(msg);
-    if (msg) {
-      input.setAttribute('aria-invalid', 'true');
-    } else {
-      input.removeAttribute('aria-invalid');
-    }
-  }
+    const errEl = document.querySelector(`[data-error-for="${input.id}"]`);
+    if (errEl) errEl.textContent = msg;
+    input.setAttribute('aria-invalid', msg ? 'true' : 'false');
+  };
 
-  function validarCPF() {
-    if (!cpf.value) {
-      setCustomValidity(cpf, 'Informe o CPF.');
-      return false;
-    }
-    if (!validaCPF(cpf.value)) {
-      setCustomValidity(cpf, 'CPF inválido. Verifique os dígitos.');
-      return false;
-    }
-    setCustomValidity(cpf, '');
-    return true;
-  }
+  const bindValidation = (selector, fn) => {
+    document.querySelectorAll(selector).forEach((el) => {
+      el.addEventListener('blur', () => {
+        if (!el.value) { setError(el, ''); return; }
+        const err = fn(el.value);
+        setError(el, err);
+      });
+      el.addEventListener('input', () => setError(el, ''));
+    });
+  };
 
-  function validarTelefone() {
-    if (!telefone.value) {
-      setCustomValidity(telefone, 'Informe o telefone.');
-      return false;
-    }
-    if (!validaTelefone(telefone.value)) {
-      setCustomValidity(telefone, 'Telefone inválido. Use DDD + número.');
-      return false;
-    }
-    setCustomValidity(telefone, '');
-    return true;
-  }
+  bindValidation('#doador-cpf, #v-cpf', (v) =>
+    validaCPF(v) ? '' : 'CPF inválido. Verifique os dígitos.');
 
-  function validarCEP() {
-    if (!cep.value) {
-      setCustomValidity(cep, 'Informe o CEP.');
-      return false;
-    }
-    if (!validaCEP(cep.value)) {
-      setCustomValidity(cep, 'CEP inválido. Use 8 dígitos.');
-      return false;
-    }
-    setCustomValidity(cep, '');
-    return true;
-  }
-
-  /* ---------- Eventos de máscara e validação ---------- */
-  cpf.addEventListener('input', function () {
-    this.value = mascaraCPF(this.value);
-    setCustomValidity(this, '');
-  });
-  cpf.addEventListener('blur', validarCPF);
-
-  telefone.addEventListener('input', function () {
-    this.value = mascaraTelefone(this.value);
-    setCustomValidity(this, '');
-  });
-  telefone.addEventListener('blur', validarTelefone);
-
-  cep.addEventListener('input', function () {
-    this.value = mascaraCEP(this.value);
-    setCustomValidity(this, '');
+  bindValidation('#v-telefone', (v) => {
+    const n = v.replace(/\D/g, '');
+    return n.length === 10 || n.length === 11 ? '' : 'Telefone inválido (use DDD + número).';
   });
 
-  cep.addEventListener('blur', function () {
-    validarCEP();
+  bindValidation('#v-cep', (v) =>
+    v.replace(/\D/g, '').length === 8 ? '' : 'CEP inválido (8 dígitos).');
 
-    const cepLimpo = this.value.replace(/\D/g, '');
-    if (cepLimpo.length === 8) {
-      fetch(`https://viacep.com.br/ws/${cepLimpo}/json/`)
+  bindValidation('#cartao-numero', (v) =>
+    validaCartao(v) ? '' : 'Número de cartão inválido.');
+
+  bindValidation('#cartao-validade', (v) => {
+    const m = v.match(/^(\d{2})\/(\d{2})$/);
+    if (!m) return 'Use o formato MM/AA.';
+    const mes = parseInt(m[1], 10);
+    if (mes < 1 || mes > 12) return 'Mês inválido.';
+    return '';
+  });
+
+  bindValidation('#cartao-cvv', (v) =>
+    /^\d{3,4}$/.test(v) ? '' : 'CVV deve ter 3 ou 4 dígitos.');
+
+  /* ---------------------------------------------------------
+     AUTO-PREENCHIMENTO DE CEP (ViaCEP)
+     --------------------------------------------------------- */
+  const cep = document.querySelector('#v-cep');
+  if (cep) {
+    cep.addEventListener('blur', () => {
+      const n = cep.value.replace(/\D/g, '');
+      if (n.length !== 8) return;
+      fetch(`https://viacep.com.br/ws/${n}/json/`)
         .then((r) => r.json())
         .then((data) => {
-          if (!data.erro) {
-            const endereco = document.getElementById('endereco');
-            const cidade = document.getElementById('cidade');
-            const uf = document.getElementById('uf');
-
-            if (endereco && !endereco.value) endereco.value = data.logradouro || '';
-            if (cidade && !cidade.value) cidade.value = data.localidade || '';
-            if (uf && !uf.value) uf.value = data.uf || '';
-          }
+          if (data.erro) return;
+          const cidade = document.querySelector('#v-cidade');
+          if (cidade && !cidade.value) cidade.value = data.localidade || '';
         })
         .catch(() => {});
-    }
+    });
+  }
+
+  /* ---------------------------------------------------------
+     BARRA DE PROGRESSO
+     --------------------------------------------------------- */
+  document.querySelectorAll('form').forEach((form) => {
+    const bar = form.querySelector('[data-progress]');
+    if (!bar) return;
+
+    const update = () => {
+      const fields = form.querySelectorAll('input:not([type="radio"]), select, textarea');
+      let filled = 0, total = 0;
+      fields.forEach((f) => {
+        total++;
+        if (f.value.trim() !== '') filled++;
+      });
+      const radios = form.querySelectorAll('input[type="radio"]');
+      if (radios.length) {
+        total++;
+        if (Array.from(radios).some((r) => r.checked)) filled++;
+      }
+      const pct = total ? Math.round((filled / total) * 100) : 0;
+      bar.style.width = pct + '%';
+    };
+
+    form.addEventListener('input', update);
+    form.addEventListener('change', update);
+    update();
   });
 
-  /* ---------- Validação no envio ---------- */
-  form.addEventListener('submit', function (e) {
-    const cpfOk = validarCPF();
-    const telOk = validarTelefone();
-    const cepOk = validarCEP();
-
-    if (!(cpfOk && telOk && cepOk)) {
+  /* ---------------------------------------------------------
+     SUBMISSÃO
+     --------------------------------------------------------- */
+  document.querySelectorAll('form').forEach((form) => {
+    form.addEventListener('submit', (e) => {
       e.preventDefault();
-      form.reportValidity();
-      const invalido = form.querySelector(':invalid');
-      if (invalido) invalido.focus();
-    }
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        const firstInvalid = form.querySelector(':invalid');
+        if (firstInvalid) firstInvalid.focus();
+        return;
+      }
+
+      // Simulação de envio
+      const btn = form.querySelector('button[type="submit"]');
+      const original = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = 'Enviando...';
+
+      setTimeout(() => {
+        btn.disabled = false;
+        btn.textContent = original;
+        form.reset();
+        document.querySelectorAll('[data-error-for]').forEach((el) => (el.textContent = ''));
+        if (window.showToast) {
+          window.showToast('✓ Enviado com sucesso! Entraremos em contato.');
+        }
+      }, 1200);
+    });
   });
 })();

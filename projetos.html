@@ -3,193 +3,157 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Conheça as iniciativas solidárias da ONG Sementes do Amanhã: educação, segurança alimentar e geração de renda.">
-  <title>Iniciativas Solidárias — Sementes do Amanhã</title>
+  <meta name="description" content="Conheça os projetos sociais da ONG Sementes do Amanhã.">
+  <title>Projetos — Sementes do Amanhã</title>
   <link rel="icon" type="image/svg+xml" href="assets/img/icones/sementes_do_amanha_logo.svg">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-  <a class="skip-link" href="#conteudo">Pular para o conteúdo principal</a>
+  <a class="skip-link" href="#main">Pular para o conteúdo principal</a>
 
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="logo" href="index.html" aria-label="Sementes do Amanhã — página inicial">
-        <img src="assets/img/icones/sementes_do_amanha_logo.svg"
-             alt="Logotipo da ONG Sementes do Amanhã"
-             width="160" height="48"
-             loading="eager" decoding="async">
+  <header class="header">
+    <div class="container header__inner">
+      <a class="header__logo" href="index.html" aria-label="Sementes do Amanhã — página inicial">
+        <img src="assets/img/icones/sementes_do_amanha_logo.svg" alt="Logotipo Sementes do Amanhã" width="160" height="44">
       </a>
-
-      <nav class="site-nav" aria-label="Navegação principal">
-        <ul>
-          <li><a href="index.html">Início</a></li>
-          <li><a href="projetos.html" aria-current="page">Iniciativas</a></li>
-          <li><a href="cadastro.html">Seja Voluntário</a></li>
+      <button class="header__toggle" type="button" aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menu"><span class="sr-only">Menu</span></button>
+      <nav class="nav" id="menu-principal" data-open="false" aria-label="Navegação principal">
+        <ul class="nav__list">
+          <li><a class="nav__link" href="index.html">Início</a></li>
+          <li><a class="nav__link" href="projetos.html" aria-current="page">Projetos</a></li>
+          <li><a class="nav__link" href="doacao.html">Doe Agora</a></li>
+          <li><a class="nav__link nav__link--cta" href="voluntario.html">Seja Voluntário</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <main id="conteudo">
+  <main id="main">
 
-    <section class="secao" aria-labelledby="titulo-iniciativas">
+    <section class="section" aria-labelledby="projetos-title">
       <div class="container">
-        <header class="secao-cabecalho">
-          <h1 id="titulo-iniciativas">Iniciativas solidárias</h1>
-          <p class="secao-descricao">Projetos contínuos, construídos com as comunidades e avaliados por indicadores claros.</p>
+        <header class="section__header">
+          <h1 class="section__title" id="projetos-title">Nossos projetos</h1>
+          <p class="section__subtitle">Filtre por área e conheça cada iniciativa em detalhe.</p>
         </header>
 
-        <div class="grid-2">
-          <article class="card projeto" id="educacao">
-            <h2>Educação que abre portas</h2>
-            <p>Reforço escolar, oficinas de leitura e preparação para o mercado de trabalho para crianças, jovens e adultos.</p>
-            <dl class="detalhes">
+        <div class="filters" role="group" aria-label="Filtrar projetos por categoria">
+          <button class="filters__btn" type="button" data-filter="all" aria-pressed="true">Todos</button>
+          <button class="filters__btn" type="button" data-filter="educacao" aria-pressed="false">Educação</button>
+          <button class="filters__btn" type="button" data-filter="alimentacao" aria-pressed="false">Alimentação</button>
+          <button class="filters__btn" type="button" data-filter="renda" aria-pressed="false">Renda</button>
+          <button class="filters__btn" type="button" data-filter="saude" aria-pressed="false">Saúde</button>
+        </div>
+
+        <div class="grid grid--3" data-projects>
+
+          <article class="card project-card" data-category="educacao">
+            <span class="project-card__badge project-card__badge--active">Ativo</span>
+            <h3 class="card__title">Educação que abre portas</h3>
+            <p class="card__text">Reforço escolar, oficinas de leitura e preparação para o mercado de trabalho.</p>
+            <dl class="project-card__meta">
               <dt>Público</dt><dd>120 estudantes</dd>
               <dt>Local</dt><dd>Vila Nova e Jardim das Flores</dd>
-              <dt>Status</dt><dd><span class="badge ativo">Ativo</span></dd>
             </dl>
           </article>
 
-          <article class="card projeto" id="alimentacao">
-            <h2>Segurança alimentar</h2>
-            <p>Hortas comunitárias, distribuição de cestas e educação nutricional para famílias em insegurança alimentar.</p>
-            <dl class="detalhes">
+          <article class="card project-card" data-category="alimentacao">
+            <span class="project-card__badge project-card__badge--active">Ativo</span>
+            <h3 class="card__title">Segurança alimentar</h3>
+            <p class="card__text">Hortas comunitárias, distribuição de cestas e educação nutricional.</p>
+            <dl class="project-card__meta">
               <dt>Público</dt><dd>300 famílias</dd>
               <dt>Local</dt><dd>5 comunidades</dd>
-              <dt>Status</dt><dd><span class="badge ativo">Ativo</span></dd>
             </dl>
           </article>
 
-          <article class="card projeto" id="renda">
-            <h2>Geração de renda</h2>
-            <p>Capacitação em empreendedorismo, artesanato e serviços, com acompanhamento para formalização e crédito solidário.</p>
-            <dl class="detalhes">
+          <article class="card project-card" data-category="renda">
+            <span class="project-card__badge project-card__badge--active">Ativo</span>
+            <h3 class="card__title">Geração de renda</h3>
+            <p class="card__text">Capacitação em empreendedorismo, artesanato e serviços.</p>
+            <dl class="project-card__meta">
               <dt>Público</dt><dd>80 mulheres</dd>
               <dt>Local</dt><dd>Núcleo Central</dd>
-              <dt>Status</dt><dd><span class="badge ativo">Ativo</span></dd>
             </dl>
           </article>
 
-          <article class="card projeto" id="saude">
-            <h2>Saúde e bem-estar</h2>
-            <p>Mutirões de saúde, rodas de conversa sobre saúde mental e encaminhamento para a rede pública.</p>
-            <dl class="detalhes">
+          <article class="card project-card" data-category="saude">
+            <span class="project-card__badge project-card__badge--planning">Em planejamento</span>
+            <h3 class="card__title">Saúde e bem-estar</h3>
+            <p class="card__text">Mutirões de saúde e rodas sobre saúde mental.</p>
+            <dl class="project-card__meta">
               <dt>Público</dt><dd>450 atendimentos/ano</dd>
               <dt>Local</dt><dd>Itinerante</dd>
-              <dt>Status</dt><dd><span class="badge planejamento">Em planejamento</span></dd>
             </dl>
           </article>
-        </div>
-      </div>
-    </section>
 
-    <section class="secao secao-destaque" id="transparencia" aria-labelledby="titulo-transparencia">
-      <div class="container">
-        <h2 id="titulo-transparencia">Transparência e prestação de contas</h2>
-        <p>Publicamos anualmente nosso relatório de atividades e demonstrações financeiras. Consulte os dados abaixo.</p>
-        <table class="tabela">
-          <caption>Resumo financeiro do último exercício (2024)</caption>
-          <thead>
-            <tr>
-              <th scope="col">Recurso</th>
-              <th scope="col">Origem</th>
-              <th scope="col">Valor aplicado</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">Doações recorrentes</th>
-              <td>Pessoas físicas</td>
-              <td>R$ 420.000</td>
-            </tr>
-            <tr>
-              <th scope="row">Editais e parcerias</th>
-              <td>Empresas e fundações</td>
-              <td>R$ 280.000</td>
-            </tr>
-            <tr>
-              <th scope="row">Eventos beneficentes</th>
-              <td>Comunidade</td>
-              <td>R$ 95.000</td>
-            </tr>
-          </tbody>
-          <tfoot>
-            <tr>
-              <th scope="row" colspan="2">Total aplicado em projetos</th>
-              <td>R$ 795.000</td>
-            </tr>
-          </tfoot>
-        </table>
+          <article class="card project-card" data-category="educacao">
+            <span class="project-card__badge project-card__badge--active">Ativo</span>
+            <h3 class="card__title">Jovem Aprendiz</h3>
+            <p class="card__text">Preparação de adolescentes para o primeiro emprego.</p>
+            <dl class="project-card__meta">
+              <dt>Público</dt><dd>60 jovens</dd>
+              <dt>Local</dt><dd>Núcleo Central</dd>
+            </dl>
+          </article>
+
+          <article class="card project-card" data-category="alimentacao">
+            <span class="project-card__badge project-card__badge--active">Ativo</span>
+            <h3 class="card__title">Cozinha Solidária</h3>
+            <p class="card__text">Refeições diárias para pessoas em situação de rua.</p>
+            <dl class="project-card__meta">
+              <dt>Público</dt><dd>200 refeições/dia</dd>
+              <dt>Local</dt><dd>Centro</dd>
+            </dl>
+          </article>
+
+        </div>
+
+        <p class="text-center mt-4 hidden" data-empty>
+          Nenhum projeto encontrado para esta categoria.
+        </p>
       </div>
     </section>
 
   </main>
 
-  <footer class="site-footer">
-    <div class="container footer-grid">
-
-      <section aria-labelledby="titulo-contato">
-        <h2 id="titulo-contato">Contato</h2>
-        <address>
-          Rua das Acácias, 240 — Vila Nova<br>
-          São Paulo/SP — CEP 01234-567<br>
-          <a href="mailto:contato@sementesdoamanha.org.br">contato@sementesdoamanha.org.br</a><br>
-          <a href="tel:+551140028922">(11) 4002-8922</a>
-        </address>
-      </section>
-
-      <nav aria-labelledby="titulo-mapa">
-        <h2 id="titulo-mapa">Mapa do site</h2>
-        <ul>
-          <li><a href="index.html">Início</a></li>
-          <li><a href="projetos.html">Iniciativas solidárias</a></li>
-          <li><a href="cadastro.html">Cadastro de voluntários</a></li>
-        </ul>
-      </nav>
-
-      <section aria-labelledby="titulo-redes">
-        <h2 id="titulo-redes">Redes sociais</h2>
-        <ul class="redes-sociais">
-          <li>
-            <a href="https://facebook.com/sementesdoamanha" aria-label="Facebook da Sementes do Amanhã" target="_blank" rel="noopener noreferrer">
-              <img src="assets/img/og/facebook.png" alt="" width="32" height="32" loading="lazy" decoding="async">
-            </a>
-          </li>
-          <li>
-            <a href="https://instagram.com/sementesdoamanha" aria-label="Instagram da Sementes do Amanhã" target="_blank" rel="noopener noreferrer">
-              <img src="assets/img/og/instagram.png" alt="" width="32" height="32" loading="lazy" decoding="async">
-            </a>
-          </li>
-          <li>
-            <a href="https://linkedin.com/company/sementesdoamanha" aria-label="LinkedIn da Sementes do Amanhã" target="_blank" rel="noopener noreferrer">
-              <img src="assets/img/og/linkedin.png" alt="" width="32" height="32" loading="lazy" decoding="async">
-            </a>
-          </li>
-          <li>
-            <a href="https://youtube.com/@sementesdoamanha" aria-label="YouTube da Sementes do Amanhã" target="_blank" rel="noopener noreferrer">
-              <img src="assets/img/og/youtube.png" alt="" width="32" height="32" loading="lazy" decoding="async">
-            </a>
-          </li>
-          <li>
-            <a href="https://wa.me/551140028922" aria-label="WhatsApp da Sementes do Amanhã" target="_blank" rel="noopener noreferrer">
-              <img src="assets/img/og/whatsapp.png" alt="" width="32" height="32" loading="lazy" decoding="async">
-            </a>
-          </li>
-        </ul>
-      </section>
-
-      <section aria-labelledby="titulo-transparencia-footer">
-        <h2 id="titulo-transparencia-footer">Transparência</h2>
-        <p>CNPJ 12.345.678/0001-90<br>Organização sem fins lucrativos.</p>
-      </section>
-
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <h2 class="footer__title">Contato</h2>
+          <address>
+            Rua das Acácias, 240 — Vila Nova<br>
+            São Paulo/SP — CEP 01234-567<br>
+            <a href="mailto:contato@sementesdoamanha.org.br">contato@sementesdoamanha.org.br</a><br>
+            <a href="tel:+551140028922">(11) 4002-8922</a>
+          </address>
+        </div>
+        <nav aria-labelledby="footer-mapa">
+          <h2 class="footer__title" id="footer-mapa">Mapa do site</h2>
+          <ul class="footer__list">
+            <li><a href="index.html">Início</a></li>
+            <li><a href="projetos.html">Projetos</a></li>
+            <li><a href="doacao.html">Doe Agora</a></li>
+            <li><a href="voluntario.html">Seja Voluntário</a></li>
+          </ul>
+        </nav>
+        <div>
+          <h2 class="footer__title">Redes sociais</h2>
+          <ul class="social">
+            <li><a class="social__link" href="#" aria-label="Facebook"><img src="assets/img/og/facebook.png" alt="" width="20" height="20" loading="lazy"></a></li>
+            <li><a class="social__link" href="#" aria-label="Instagram"><img src="assets/img/og/instagram.png" alt="" width="20" height="20" loading="lazy"></a></li>
+            <li><a class="social__link" href="#" aria-label="LinkedIn"><img src="assets/img/og/linkedin.png" alt="" width="20" height="20" loading="lazy"></a></li>
+            <li><a class="social__link" href="#" aria-label="YouTube"><img src="assets/img/og/youtube.png" alt="" width="20" height="20" loading="lazy"></a></li>
+            <li><a class="social__link" href="#" aria-label="WhatsApp"><img src="assets/img/og/whatsapp.png" alt="" width="20" height="20" loading="lazy"></a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="footer__bottom">© 2025 Sementes do Amanhã. CNPJ 12.345.678/0001-90.</p>
     </div>
-
-    <p class="copyright container">
-      <small>© 2025 Sementes do Amanhã. Conteúdo sob licença CC BY-SA 4.0.</small>
-    </p>
   </footer>
 
+  <script src="js/main.js" defer></script>
 </body>
 </html>
