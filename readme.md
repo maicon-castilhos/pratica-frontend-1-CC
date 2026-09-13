@@ -1,4 +1,5 @@
-📖 Sobre o projeto
+## 📖 Sobre o projeto
+
 O Sementes do Amanhã é uma ONG fictícia criada como cenário para o desenvolvimento de uma plataforma web completa voltada ao terceiro setor. O projeto evoluiu em duas etapas:
 
 Fase 1 (EP I): site institucional com HTML5 semântico, acessibilidade e validação de formulário.
