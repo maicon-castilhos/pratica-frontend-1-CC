@@ -253,7 +253,7 @@ ul, ol { padding: 0; list-style: none; }
 .nav__link:hover,
 .nav__link:focus { color: var(--color-primary); background: var(--color-primary-light); }
 .nav__link[aria-current="page"] {
-  color: var(--color-primary);
+
   font-weight: 600;
 }
 .nav__link--cta {
