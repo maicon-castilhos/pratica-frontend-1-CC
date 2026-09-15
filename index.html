@@ -3,19 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="ONG Sementes do Amanhã: educação, segurança alimentar e geração de renda. Doe ou seja voluntário.">
+  <meta name="description" content="ONG Sementes do Amanhã: educação, segurança alimentar e geração de renda.">
   <meta name="theme-color" content="#0b6e4f">
-  <title>Sementes do Amanhã — Transformando comunidades</title>
+  <title>Sementes do Amanhã</title>
   <link rel="icon" type="image/svg+xml" href="assets/img/icones/sementes_do_amanha_logo.svg">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
 </head>
 <body>
 
   <a class="skip-link" href="#main">Pular para o conteúdo principal</a>
 
-  <header class="header">
+  <header class="header" role="banner">
     <div class="container header__inner">
-      <a class="header__logo" href="index.html" aria-label="Sementes do Amanhã — página inicial">
+      <a class="header__logo" href="/" data-link aria-label="Sementes do Amanhã — página inicial">
         <img src="assets/img/icones/sementes_do_amanha_logo.svg" alt="Logotipo Sementes do Amanhã" width="160" height="44">
       </a>
 
@@ -25,216 +27,21 @@
 
       <nav class="nav" id="menu-principal" data-open="false" aria-label="Navegação principal">
         <ul class="nav__list">
-          <li><a class="nav__link" href="index.html" aria-current="page">Início</a></li>
-          <li><a class="nav__link" href="projetos.html">Projetos</a></li>
-          <li><a class="nav__link" href="doacao.html">Doe Agora</a></li>
-          <li><a class="nav__link nav__link--cta" href="voluntario.html">Seja Voluntário</a></li>
+          <li><a class="nav__link" href="/" data-link>Início</a></li>
+          <li><a class="nav__link" href="/projetos" data-link>Projetos</a></li>
+          <li><a class="nav__link" href="/doacao" data-link>Doe Agora</a></li>
+          <li><a class="nav__link nav__link--cta" href="/voluntario" data-link>Seja Voluntário</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <main id="main">
-
-    <!-- HERO -->
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="container hero__grid">
-        <div>
-          <span class="hero__eyebrow">Desde 2009 • Terceiro setor</span>
-          <h1 class="hero__title" id="hero-title">
-            Transformamos <em>engajamento</em> em oportunidades reais
-          </h1>
-          <p class="hero__lead">
-            Atuamos em comunidades vulneráveis com projetos de educação,
-            segurança alimentar e geração de renda. Cada doação e cada hora
-            voluntária viram impacto mensurável.
-          </p>
-          <div class="hero__actions">
-            <a class="btn btn--primary btn--lg" href="doacao.html">Fazer uma doação</a>
-            <a class="btn btn--secondary btn--lg" href="projetos.html">Ver projetos</a>
-          </div>
-        </div>
-        <figure class="hero__figure">
-          <img src="assets/img/hero/comunidade-800.jpg"
-               srcset="assets/img/hero/comunidade-480.jpg 480w,
-                       assets/img/hero/comunidade-800.jpg 800w,
-                       assets/img/hero/comunidade-1200.jpg 1200w"
-               sizes="(max-width: 900px) 100vw, 560px"
-               alt="Voluntários e moradores reunidos em círculo em oficina comunitária ao ar livre."
-               width="800" height="600"
-               loading="eager" fetchpriority="high" decoding="async">
-          <figcaption class="hero__caption">Oficina de horta comunitária — Vila Nova, 2024.</figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <!-- SOBRE -->
-    <section class="section" aria-labelledby="sobre-title">
-      <div class="container">
-        <header class="section__header">
-          <h2 class="section__title" id="sobre-title">Quem somos</h2>
-          <p class="section__subtitle">
-            Uma rede que acredita em mudança construída com método, escuta e continuidade.
-          </p>
-        </header>
-
-        <div class="grid grid--3">
-          <article class="card">
-            <span class="card__icon" aria-hidden="true">🎯</span>
-            <h3 class="card__title">Missão</h3>
-            <p class="card__text">Ampliar o acesso a educação, alimentação digna e trabalho.</p>
-          </article>
-          <article class="card">
-            <span class="card__icon" aria-hidden="true">🌱</span>
-            <h3 class="card__title">Visão</h3>
-            <p class="card__text">Comunidades autônomas, capazes de decidir sobre o próprio futuro.</p>
-          </article>
-          <article class="card">
-            <span class="card__icon" aria-hidden="true">💚</span>
-            <h3 class="card__title">Valores</h3>
-            <p class="card__text">Transparência, protagonismo local, equidade e impacto mensurável.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROJETOS EM DESTAQUE -->
-    <section class="section section--soft" aria-labelledby="destaques-title">
-      <div class="container">
-        <header class="section__header section__header--center">
-          <h2 class="section__title" id="destaques-title">Projetos em destaque</h2>
-          <p class="section__subtitle">Iniciativas contínuas, avaliadas por indicadores claros.</p>
-        </header>
-
-        <div class="grid grid--3">
-          <article class="card project-card">
-            <span class="project-card__badge project-card__badge--active">Ativo</span>
-            <h3 class="card__title">Educação que abre portas</h3>
-            <p class="card__text">Reforço escolar e preparação para o mercado de trabalho.</p>
-            <dl class="project-card__meta">
-              <dt>Público</dt><dd>120 estudantes</dd>
-              <dt>Local</dt><dd>Vila Nova</dd>
-            </dl>
-          </article>
-
-          <article class="card project-card">
-            <span class="project-card__badge project-card__badge--active">Ativo</span>
-            <h3 class="card__title">Segurança alimentar</h3>
-            <p class="card__text">Hortas comunitárias e distribuição de cestas.</p>
-            <dl class="project-card__meta">
-              <dt>Público</dt><dd>300 famílias</dd>
-              <dt>Local</dt><dd>5 comunidades</dd>
-            </dl>
-          </article>
-
-          <article class="card project-card">
-            <span class="project-card__badge project-card__badge--active">Ativo</span>
-            <h3 class="card__title">Geração de renda</h3>
-            <p class="card__text">Capacitação e acompanhamento para formalização.</p>
-            <dl class="project-card__meta">
-              <dt>Público</dt><dd>80 mulheres</dd>
-              <dt>Local</dt><dd>Núcleo Central</dd>
-            </dl>
-          </article>
-        </div>
-
-        <p class="text-center mt-6">
-          <a class="btn btn--secondary" href="projetos.html">Ver todos os projetos</a>
-        </p>
-      </div>
-    </section>
-
-    <!-- IMPACTO -->
-    <section class="section" aria-labelledby="impacto-title">
-      <div class="container">
-        <header class="section__header section__header--center">
-          <h2 class="section__title" id="impacto-title">Nosso impacto em números</h2>
-          <p class="section__subtitle">Dados auditados do último exercício.</p>
-        </header>
-
-        <dl class="stats">
-          <div class="stat">
-            <dt>Pessoas atendidas</dt>
-            <dd data-count="4820">0</dd>
-          </div>
-          <div class="stat">
-            <dt>Voluntários ativos</dt>
-            <dd data-count="312">0</dd>
-          </div>
-          <div class="stat">
-            <dt>Projetos em andamento</dt>
-            <dd data-count="7">0</dd>
-          </div>
-          <div class="stat">
-            <dt>Comunidades parceiras</dt>
-            <dd data-count="12">0</dd>
-          </div>
-        </dl>
-      </div>
-    </section>
-
-    <!-- DEPOIMENTOS (carrossel) -->
-    <section class="section section--soft" aria-labelledby="depoimentos-title">
-      <div class="container">
-        <header class="section__header section__header--center">
-          <h2 class="section__title" id="depoimentos-title">Quem viveu, conta</h2>
-        </header>
-
-        <div class="carousel" data-carousel>
-          <div class="carousel__viewport">
-            <div class="carousel__track" data-track>
-              <blockquote class="carousel__slide">
-                <img src="assets/img/avatar/avatar-chandler.jpg" alt="Retrato de Chandler Mascarenhas" width="72" height="72" loading="lazy">
-                <div>
-                  <p class="carousel__quote">“Entrei como aluno do reforço e hoje sou monitor da mesma turma.”</p>
-                  <cite class="carousel__author">— Chandler Mascarenhas, Vila Nova</cite>
-                </div>
-              </blockquote>
-
-              <blockquote class="carousel__slide">
-                <img src="assets/img/avatar/avatar-ana.jpg" alt="Retrato de Ana Ribeiro" width="72" height="72" loading="lazy">
-                <div>
-                  <p class="carousel__quote">“A horta comunitária virou fonte de renda e orgulho para a nossa rua.”</p>
-                  <cite class="carousel__author">— Ana Ribeiro, Jardim das Flores</cite>
-                </div>
-              </blockquote>
-
-              <blockquote class="carousel__slide">
-                <img src="assets/img/avatar/avatar-joao.jpg" alt="Retrato de João Pereira" width="72" height="72" loading="lazy">
-                <div>
-                  <p class="carousel__quote">“Como voluntário, aprendi mais do que ensinei. Recomendo demais.”</p>
-                  <cite class="carousel__author">— João Pereira, voluntário</cite>
-                </div>
-              </blockquote>
-            </div>
-          </div>
-
-          <div class="carousel__controls">
-            <button class="carousel__btn" type="button" data-prev aria-label="Depoimento anterior">‹</button>
-            <div class="carousel__dots" data-dots></div>
-            <button class="carousel__btn" type="button" data-next aria-label="Próximo depoimento">›</button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA FINAL -->
-    <section class="section" aria-labelledby="cta-title">
-      <div class="container text-center">
-        <h2 class="section__title" id="cta-title">Pronto para fazer parte?</h2>
-        <p class="section__subtitle mb-4">
-          Escolha como quer contribuir. Toda ajuda vira impacto real.
-        </p>
-        <div class="hero__actions" style="justify-content:center">
-          <a class="btn btn--primary btn--lg" href="doacao.html">Doar agora</a>
-          <a class="btn btn--secondary btn--lg" href="voluntario.html">Ser voluntário</a>
-        </div>
-      </div>
-    </section>
-
+  <main id="main" class="main" tabindex="-1" aria-live="polite">
+    <p class="sr-only" role="status" aria-live="polite" data-route-announcer></p>
+    <!-- As views são injetadas aqui pelo router -->
   </main>
 
-  <footer class="footer">
+  <footer class="footer" role="contentinfo">
     <div class="container">
       <div class="footer__grid">
         <div>
@@ -250,31 +57,61 @@
         <nav aria-labelledby="footer-mapa">
           <h2 class="footer__title" id="footer-mapa">Mapa do site</h2>
           <ul class="footer__list">
-            <li><a href="index.html">Início</a></li>
-            <li><a href="projetos.html">Projetos</a></li>
-            <li><a href="doacao.html">Doe Agora</a></li>
-            <li><a href="voluntario.html">Seja Voluntário</a></li>
+            <li><a href="/" data-link>Início</a></li>
+            <li><a href="/projetos" data-link>Projetos</a></li>
+            <li><a href="/doacao" data-link>Doe Agora</a></li>
+            <li><a href="/voluntario" data-link>Seja Voluntário</a></li>
           </ul>
         </nav>
 
         <div>
           <h2 class="footer__title">Redes sociais</h2>
           <ul class="social">
-            <li><a class="social__link" href="#" aria-label="Facebook" target="_blank" rel="noopener"><img src="assets/img/og/facebook.png" alt="" width="20" height="20" loading="lazy"></a></li>
-            <li><a class="social__link" href="#" aria-label="Instagram" target="_blank" rel="noopener"><img src="assets/img/og/instagram.png" alt="" width="20" height="20" loading="lazy"></a></li>
-            <li><a class="social__link" href="#" aria-label="LinkedIn" target="_blank" rel="noopener"><img src="assets/img/og/linkedin.png" alt="" width="20" height="20" loading="lazy"></a></li>
-            <li><a class="social__link" href="#" aria-label="YouTube" target="_blank" rel="noopener"><img src="assets/img/og/youtube.png" alt="" width="20" height="20" loading="lazy"></a></li>
-            <li><a class="social__link" href="#" aria-label="WhatsApp" target="_blank" rel="noopener"><img src="assets/img/og/whatsapp.png" alt="" width="20" height="20" loading="lazy"></a></li>
+            <li><a class="social__link" href="#" aria-label="Facebook"><img src="assets/img/og/facebook.png" alt="" width="20" height="20" loading="lazy"></a></li>
+            <li><a class="social__link" href="#" aria-label="Instagram"><img src="assets/img/og/instagram.png" alt="" width="20" height="20" loading="lazy"></a></li>
+            <li><a class="social__link" href="#" aria-label="LinkedIn"><img src="assets/img/og/linkedin.png" alt="" width="20" height="20" loading="lazy"></a></li>
+            <li><a class="social__link" href="#" aria-label="YouTube"><img src="assets/img/og/youtube.png" alt="" width="20" height="20" loading="lazy"></a></li>
+            <li><a class="social__link" href="#" aria-label="WhatsApp"><img src="assets/img/og/whatsapp.png" alt="" width="20" height="20" loading="lazy"></a></li>
           </ul>
         </div>
       </div>
-
       <p class="footer__bottom">© 2025 Sementes do Amanhã. CNPJ 12.345.678/0001-90.</p>
     </div>
   </footer>
 
   <div class="toast" role="status" aria-live="polite" data-toast></div>
 
-  <script src="js/main.js" defer></script>
+  <!-- Templates nativos usados pelo JavaScript -->
+  <template id="tpl-card-projeto">
+    <article class="card project-card">
+      <span class="project-card__badge" data-badge></span>
+      <h3 class="card__title" data-title></h3>
+      <p class="card__text" data-text></p>
+      <dl class="project-card__meta">
+        <dt>Público</dt><dd data-publico></dd>
+        <dt>Local</dt><dd data-local></dd>
+      </dl>
+    </article>
+  </template>
+
+  <template id="tpl-slide-depoimento">
+    <blockquote class="carousel__slide">
+      <img data-avatar alt="" width="72" height="72" loading="lazy">
+      <div>
+        <p class="carousel__quote" data-quote></p>
+        <cite class="carousel__author" data-author></cite>
+      </div>
+    </blockquote>
+  </template>
+
+  <template id="tpl-historico-item">
+    <li class="history__item">
+      <strong data-tipo></strong>
+      <span data-resumo></span>
+      <time data-data></time>
+    </li>
+  </template>
+
+  <script type="module" src="js/app.js"></script>
 </body>
 </html>

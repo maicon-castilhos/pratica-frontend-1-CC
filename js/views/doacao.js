@@ -1,36 +1,15 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Faça uma doação para a ONG Sementes do Amanhã.">
-  <title>Doe Agora — Sementes do Amanhã</title>
-  <link rel="icon" type="image/svg+xml" href="assets/img/icones/sementes_do_amanha_logo.svg">
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+/* =========================================================
+   doacao.js — formulário de doação
+   ========================================================= */
 
-  <a class="skip-link" href="#main">Pular para o conteúdo principal</a>
+import { mount, qs } from '../utils/dom.js';
+import { storage } from '../storage.js';
+import { initForms } from '../forms/feedback.js';
+import { initMasksAndValidation } from '../forms/validacao.js';
 
-  <header class="header">
-    <div class="container header__inner">
-      <a class="header__logo" href="index.html" aria-label="Sementes do Amanhã — página inicial">
-        <img src="assets/img/icones/sementes_do_amanha_logo.svg" alt="Logotipo Sementes do Amanhã" width="160" height="44">
-      </a>
-      <button class="header__toggle" type="button" aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menu"><span class="sr-only">Menu</span></button>
-      <nav class="nav" id="menu-principal" data-open="false" aria-label="Navegação principal">
-        <ul class="nav__list">
-          <li><a class="nav__link" href="index.html">Início</a></li>
-          <li><a class="nav__link" href="projetos.html">Projetos</a></li>
-          <li><a class="nav__link" href="doacao.html" aria-current="page">Doe Agora</a></li>
-          <li><a class="nav__link nav__link--cta" href="voluntario.html">Seja Voluntário</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <main id="main">
-
+export function renderDoacao(container) {
+  const wrapper = document.createElement('div');
+  wrapper.innerHTML = `
     <section class="section" aria-labelledby="doacao-title">
       <div class="container">
         <header class="section__header section__header--center">
@@ -39,35 +18,27 @@
         </header>
 
         <form class="form" id="form-doacao" novalidate>
-          <div class="form__progress" aria-hidden="true">
-            <div class="form__progress-fill" data-progress></div>
-          </div>
+          <div class="form__progress" aria-hidden="true"><div class="form__progress-fill" data-progress></div></div>
 
           <fieldset class="form__fieldset">
             <legend class="form__legend">1. Valor da doação</legend>
-
             <div class="donation-values" role="radiogroup" aria-label="Valor da doação">
               <input type="radio" id="v30" name="valor" value="30" required>
               <label for="v30">R$ 30</label>
-
               <input type="radio" id="v50" name="valor" value="50">
               <label for="v50">R$ 50</label>
-
               <input type="radio" id="v100" name="valor" value="100">
               <label for="v100">R$ 100</label>
-
               <input type="radio" id="v250" name="valor" value="250">
               <label for="v250">R$ 250</label>
             </div>
-
             <div class="form__field">
               <label class="form__label" for="valor-outro">Ou digite outro valor (R$)</label>
-              <input class="form__input" type="number" id="valor-outro" name="valor_outro" min="5" step="1" placeholder="Ex.: 75" inputmode="numeric">
+              <input class="form__input" type="number" id="valor-outro" name="valor_outro" min="5" step="1" inputmode="numeric" placeholder="Ex.: 75">
               <span class="form__error" data-error-for="valor-outro"></span>
             </div>
-
             <div class="form__field">
-              <label class="form__label" for="recorrencia">Tipo de doação</label>
+              <label class="form__label" for="recorrencia">Tipo de doação *</label>
               <select class="form__select" id="recorrencia" name="recorrencia" required>
                 <option value="">Selecione</option>
                 <option value="unica">Única</option>
@@ -79,13 +50,11 @@
 
           <fieldset class="form__fieldset">
             <legend class="form__legend">2. Seus dados</legend>
-
             <div class="form__field">
               <label class="form__label" for="doador-nome">Nome completo *</label>
               <input class="form__input" type="text" id="doador-nome" name="nome" required minlength="3" autocomplete="name">
               <span class="form__error" data-error-for="doador-nome"></span>
             </div>
-
             <div class="form__row">
               <div class="form__field">
                 <label class="form__label" for="doador-email">E-mail *</label>
@@ -102,13 +71,11 @@
 
           <fieldset class="form__fieldset">
             <legend class="form__legend">3. Pagamento</legend>
-
             <div class="form__field">
               <label class="form__label" for="cartao-numero">Número do cartão *</label>
               <input class="form__input" type="text" id="cartao-numero" name="cartao" required inputmode="numeric" maxlength="19" placeholder="0000 0000 0000 0000" autocomplete="cc-number">
               <span class="form__error" data-error-for="cartao-numero"></span>
             </div>
-
             <div class="form__row">
               <div class="form__field">
                 <label class="form__label" for="cartao-validade">Validade *</label>
@@ -135,48 +102,14 @@
         </form>
       </div>
     </section>
+  `;
 
-  </main>
+  mount(container, wrapper);
 
-  <footer class="footer">
-    <div class="container">
-      <div class="footer__grid">
-        <div>
-          <h2 class="footer__title">Contato</h2>
-          <address>
-            Rua das Acácias, 240 — Vila Nova<br>
-            São Paulo/SP — CEP 01234-567<br>
-            <a href="mailto:contato@sementesdoamanha.org.br">contato@sementesdoamanha.org.br</a><br>
-            <a href="tel:+551140028922">(11) 4002-8922</a>
-          </address>
-        </div>
-        <nav aria-labelledby="footer-mapa">
-          <h2 class="footer__title" id="footer-mapa">Mapa do site</h2>
-          <ul class="footer__list">
-            <li><a href="index.html">Início</a></li>
-            <li><a href="projetos.html">Projetos</a></li>
-            <li><a href="doacao.html">Doe Agora</a></li>
-            <li><a href="voluntario.html">Seja Voluntário</a></li>
-          </ul>
-        </nav>
-        <div>
-          <h2 class="footer__title">Redes sociais</h2>
-          <ul class="social">
-            <li><a class="social__link" href="#" aria-label="Facebook"><img src="assets/img/og/facebook.png" alt="" width="20" height="20" loading="lazy"></a></li>
-            <li><a class="social__link" href="#" aria-label="Instagram"><img src="assets/img/og/instagram.png" alt="" width="20" height="20" loading="lazy"></a></li>
-            <li><a class="social__link" href="#" aria-label="LinkedIn"><img src="assets/img/og/linkedin.png" alt="" width="20" height="20" loading="lazy"></a></li>
-            <li><a class="social__link" href="#" aria-label="YouTube"><img src="assets/img/og/youtube.png" alt="" width="20" height="20" loading="lazy"></a></li>
-            <li><a class="social__link" href="#" aria-label="WhatsApp"><img src="assets/img/og/whatsapp.png" alt="" width="20" height="20" loading="lazy"></a></li>
-          </ul>
-        </div>
-      </div>
-      <p class="footer__bottom">© 2025 Sementes do Amanhã. CNPJ 12.345.678/0001-90.</p>
-    </div>
-  </footer>
-
-  <div class="toast" role="status" aria-live="polite" data-toast></div>
-
-  <script src="js/main.js" defer></script>
-  <script src="js/validacao.js" defer></script>
-</body>
-</html>
+  const form = qs('#form-doacao', wrapper);
+  initMasksAndValidation(form);
+  initForms(form, {
+    entity: 'doacao',
+    onSave: (dados) => storage.addDoacao(dados),
+  });
+}

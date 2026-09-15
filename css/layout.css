@@ -1,0 +1,270 @@
+/* =========================================================
+   layout.css — estrutura macro da SPA
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   1. Header fixo
+   --------------------------------------------------------- */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: saturate(180%) blur(12px);
+  -webkit-backdrop-filter: saturate(180%) blur(12px);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  height: var(--header-h);
+}
+
+.header__logo { display: inline-flex; align-items: center; }
+.header__logo img { height: 44px; width: auto; }
+
+.header__toggle {
+  display: none;
+  width: 44px; height: 44px;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  position: relative;
+}
+.header__toggle::before,
+.header__toggle::after {
+  content: "";
+  position: absolute;
+  left: 50%; transform: translateX(-50%);
+  width: 22px; height: 2px;
+  background: var(--color-primary);
+  transition: transform var(--transition-base), top var(--transition-base);
+}
+.header__toggle::before { top: 15px; }
+.header__toggle::after  { top: 27px; }
+.header__toggle[aria-expanded="true"]::before { top: 21px; transform: translateX(-50%) rotate(45deg); }
+.header__toggle[aria-expanded="true"]::after  { top: 21px; transform: translateX(-50%) rotate(-45deg); }
+
+.nav__list {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+.nav__link {
+  display: inline-block;
+  padding: var(--sp-2) var(--sp-3);
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+  color: var(--color-text-soft);
+  transition: color var(--transition-fast), background var(--transition-fast);
+}
+.nav__link:hover,
+.nav__link:focus { color: var(--color-primary); background: var(--color-primary-light); }
+.nav__link[aria-current="page"] { color: var(--color-primary); font-weight: 600; }
+.nav__link--cta {
+  background: var(--color-primary);
+  color: var(--color-text-invert);
+}
+.nav__link--cta:hover { background: var(--color-primary-dark); color: var(--color-text-invert); }
+
+/* Menu mobile */
+@media (max-width: 860px) {
+  .header__toggle { display: block; }
+  .nav {
+    position: fixed;
+    inset: var(--header-h) 0 auto 0;
+    background: #fff;
+    border-bottom: 1px solid var(--color-border);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--transition-slow);
+    box-shadow: var(--shadow-md);
+  }
+  .nav[data-open="true"] { max-height: 420px; }
+  .nav__list {
+    flex-direction: column;
+    align-items: stretch;
+    padding: var(--sp-3) var(--sp-4) var(--sp-5);
+    gap: var(--sp-1);
+  }
+  .nav__link { padding: var(--sp-3) var(--sp-4); }
+}
+
+/* ---------------------------------------------------------
+   2. Main — container das views
+   --------------------------------------------------------- */
+.main {
+  min-height: calc(100vh - var(--header-h) - 320px);
+  display: block;
+  animation: viewFadeIn var(--transition-base) ease;
+}
+
+.main:focus { outline: none; }
+
+@keyframes viewFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------------------------------------------------------
+   3. Seções e grids
+   --------------------------------------------------------- */
+.section { padding: var(--sp-7) 0; }
+.section--soft { background: var(--color-bg-soft); }
+.section--dark { background: var(--color-bg-dark); color: var(--color-text-invert); }
+
+.section__header {
+  max-width: 62ch;
+  margin-bottom: var(--sp-6);
+}
+.section__header--center {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.section__title {
+  font-size: var(--fs-2xl);
+  margin-bottom: var(--sp-3);
+  color: var(--color-primary-dark);
+}
+.section__title--invert { color: var(--color-text-invert); }
+
+.section__subtitle {
+  color: var(--color-text-soft);
+  font-size: var(--fs-lg);
+}
+
+.grid { display: grid; gap: var(--sp-5); }
+.grid--2 { grid-template-columns: repeat(2, 1fr); }
+.grid--3 { grid-template-columns: repeat(3, 1fr); }
+.grid--4 { grid-template-columns: repeat(4, 1fr); }
+
+/* ---------------------------------------------------------
+   4. Hero
+   --------------------------------------------------------- */
+.hero {
+  padding: var(--sp-8) 0 var(--sp-7);
+  background:
+    radial-gradient(ellipse at top right, rgba(244, 162, 97, 0.12), transparent 55%),
+    linear-gradient(180deg, var(--color-primary-light) 0%, var(--color-bg) 100%);
+}
+
+.hero__grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: var(--sp-7);
+  align-items: center;
+}
+
+.hero__eyebrow {
+  display: inline-block;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-primary);
+  background: #fff;
+  padding: var(--sp-1) var(--sp-3);
+  border-radius: var(--radius-full);
+  margin-bottom: var(--sp-4);
+  box-shadow: var(--shadow-sm);
+}
+
+.hero__title {
+  font-size: var(--fs-4xl);
+  letter-spacing: -0.02em;
+  margin-bottom: var(--sp-4);
+}
+.hero__title em { font-style: normal; color: var(--color-primary); }
+
+.hero__lead {
+  font-size: var(--fs-lg);
+  color: var(--color-text-soft);
+  max-width: 52ch;
+  margin-bottom: var(--sp-5);
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+}
+
+.hero__figure {
+  margin: 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  background: var(--color-primary-light);
+}
+.hero__figure img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+.hero__caption {
+  padding: var(--sp-3) var(--sp-4);
+  font-size: var(--fs-sm);
+  color: var(--color-text-soft);
+  background: #fff;
+  border-top: 1px solid var(--color-border);
+}
+
+/* ---------------------------------------------------------
+   5. Footer
+   --------------------------------------------------------- */
+.footer {
+  background: var(--color-bg-dark);
+  color: #cbd5d1;
+  padding: var(--sp-7) 0 var(--sp-4);
+  margin-top: var(--sp-7);
+}
+.footer__grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  gap: var(--sp-6);
+  margin-bottom: var(--sp-6);
+}
+.footer__title {
+  color: #fff;
+  font-size: var(--fs-lg);
+  margin-bottom: var(--sp-3);
+}
+.footer__list li { margin-bottom: var(--sp-2); }
+.footer__list a { color: #a7e0c8; }
+.footer__list a:hover { color: #fff; }
+.footer address { font-style: normal; line-height: 1.8; }
+.footer__bottom {
+  border-top: 1px solid rgba(255,255,255,0.15);
+  padding-top: var(--sp-4);
+  text-align: center;
+  font-size: var(--fs-sm);
+  color: #94a3b8;
+}
+
+/* ---------------------------------------------------------
+   6. Media queries gerais
+   --------------------------------------------------------- */
+@media (max-width: 960px) {
+  .hero__grid { grid-template-columns: 1fr; }
+  .grid--4 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 860px) {
+  .grid--3 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 720px) {
+  .grid--2, .grid--3, .grid--4 { grid-template-columns: 1fr; }
+  .footer__grid { grid-template-columns: 1fr; }
+  .stats { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 520px) {
+  .hero { padding: var(--sp-6) 0; }
+}

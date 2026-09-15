@@ -1,299 +1,151 @@
-## 📖 Sobre o projeto
+# 📖 Sobre o projeto
+O Sementes do Amanhã é uma ONG fictícia criada como cenário para o desenvolvimento de uma plataforma web completa voltada ao terceiro setor. O projeto evoluiu em três fases:
 
-O Sementes do Amanhã é uma ONG fictícia criada como cenário para o desenvolvimento de uma plataforma web completa voltada ao terceiro setor. O projeto evoluiu em duas etapas:
-
-Fase 1 (EP I): site institucional com HTML5 semântico, acessibilidade e validação de formulário.
+Fase 1 (EP I): site institucional multipágina com HTML5 semântico, acessibilidade e validação de formulário.
 
 Fase 2 (EP II): plataforma interativa com design system, CSS3 avançado, filtros, carrossel e formulários de doação e voluntariado.
 
-🟢 Parte 1 — Experiência Prática I (Versão 1.0)
-Objetivo
-Construir um site institucional para uma ONG, aplicando HTML5 semântico, acessibilidade e validação de formulário com foco em integridade dos dados.
+Fase 3 (EP III): transformação em Single Page Application (SPA) com JavaScript modular, roteamento por History API, templates nativos, persistência em localStorage e sanitização contra XSS.
 
-Estrutura entregue
-text
-pratica-frontend-1-CC/
-├── index.html              ← Página inicial
-├── projetos.html           ← Iniciativas solidárias
-├── cadastro.html           ← Formulário de voluntário
+## 🏗️ Arquitetura da v3
+Estrutura de pastas da SPA:
+
+pratica-frontend-1-CC-v3/
+├── index.html              (único HTML, com template e main id="main")
 ├── css/
-│   └── style.css
+│   ├── base.css            (reset + design tokens)
+│   ├── layout.css          (header, main, footer, grids, hero)
+│   └── components.css      (botões, cards, badges, forms, carrossel, toast)
 ├── js/
-│   └── validacao.js
-└── assets/
-    └── img/
-        ├── icones/sementes_do_amanha_logo.svg
-        ├── og/ (facebook, instagram, linkedin, youtube, whatsapp).png
-        └── avatar/avatar-chandler.jpg
+│   ├── app.js              (ponto de entrada)
+│   ├── router.js           (History API + foco + anúncio de rota)
+│   ├── storage.js          (localStorage com namespace e versionamento)
+│   ├── templates.js        (clonagem de template + preenchimento)
+│   ├── views/
+│   │   ├── home.js
+│   │   ├── projetos.js
+│   │   ├── doacao.js
+│   │   └── voluntario.js
+│   ├── forms/
+│   │   ├── validacao.js    (máscaras + CPF + Luhn + ViaCEP)
+│   │   └── feedback.js     (progresso + envio + rascunho + toast)
+│   └── utils/
+│       ├── dom.js          (helpers)
+│       ├── sanitize.js     (escape contra XSS)
+│       ├── toast.js        (feedback global)
+│       └── menu.js         (menu hamburger)
+└── assets/img/
+    ├── hero/
+    ├── icones/
+    ├── og/
+    └── avatar/
 
-O que foi implementado
+## 🔄 O que mudou em relação à v2
 
-## HTML5 semântico ##
-Uso de header, nav, main, section, article, aside, footer, figure, figcaption, address, blockquote, cite, dl, table
+HTML único. As quatro páginas da v2 (index.html, projetos.html, doacao.html, voluntario.html) foram consolidadas em um único index.html com main id="main" vazio e templates nativos.
 
-Hierarquia de títulos h1 → h2 → h3 sem saltos
+Roteamento SPA. A navegação entre views acontece via History API (/, /projetos, /doacao, /voluntario), sem recarregar a página. Botões voltar/avançar do navegador funcionam.
 
-Um único h1 por página, vinculado a <section> via aria-labelledby
+JavaScript modular. Toda a lógica foi dividida por responsabilidade: router, storage, templates, views, forms e utils. Cada módulo é um ES Module importado no topo.
 
-Acessibilidade
-skip-link para pular ao conteúdo principal
+Camada de persistência. O módulo storage.js encapsula o localStorage com namespace sementes:v1:*, versionamento de schema, tratamento de quota e operações tipadas para doações, cadastros, preferências, rascunhos e histórico unificado.
 
-aria-current="page" na navegação ativa
+Templates nativos. Os template do HTML são clonados pelo JavaScript, com preenchimento via atributos data-*. Isso evita concatenação de strings e reduz o custo de parse.
 
-aria-labelledby em todas as seções
+Sanitização. Toda entrada do usuário passa por stripTags antes de ser salva ou renderizada. O toast também escapa mensagens com escapeHtml.
 
-alt descritivo em todas as imagens
+Feedback de formulário mais rico. Máscaras em tempo real, validação de CPF com dígitos verificadores, algoritmo de Luhn para cartão, autopreenchimento de cidade via ViaCEP, barra de progresso reativa, rascunho automático, estado "Enviando..." no botão e toast de confirmação.
 
-<address> para dados de contato
+Acessibilidade reforçada. Foco gerenciado a cada troca de view, anúncio de rota via role="status" com aria-live="polite", aria-invalid e aria-describedby nos campos com erro, aria-current nos links ativos.
 
-<dl> para pares termo-valor (indicadores de impacto)
+CSS reorganizado em três folhas. base.css (tokens e reset), layout.css (estrutura macro) e components.css (peças reutilizáveis). Ordem de importação controlada para evitar conflito de especificidade.
 
-Foco visível com :focus-visible
+## 🧩 Decisões técnicas
+History API em vez de hash routing, por ser o padrão profissional de SPAs.
 
-Validação em camadas
-HTML nativo: required, type, maxlength, inputmode, autocomplete
+Views isoladas por módulo, cada uma exportando renderX(container).
 
-## JavaScript: ##
+Templates nativos template para componentes estruturais, com preenchimento via data-*.
 
-máscaras em tempo real para CPF, telefone e CEP
+localStorage com namespace e versionamento, tratado em uma camada única.
 
-Algoritmo de CPF com dígitos verificadores
+Sanitização de entrada antes de qualquer inserção no DOM.
 
-Validação de telefone (10 ou 11 dígitos)
+Design system com tokens em :root e componentes em BEM.
 
-Autopreenchimento de endereço via API ViaCEP
+Acessibilidade: skip-link, aria-current, aria-live, foco gerenciado, prefers-reduced-motion.
 
-setCustomValidity para mensagens em português
+CSS Grid para layout macro e Flexbox para componentes internos.
 
-## CSS
-Variáveis em :root (--cor-primaria, --raio, --sombra, etc.)
+## 🚀 Como rodar
+A SPA usa History API, que exige um servidor local. Não funciona abrindo com duplo clique.
 
-Grid e Flexbox para layout
+Com Python:
 
-Media queries em 900px e 520px
-
-Transições e estados de hover/focus
-
-Identidade visual
-Logotipo SVG no header das 3 páginas
-
-Favicon SVG
-
-Avatar no depoimento (Chandler Mascarenhas)
-
-Ícones de redes sociais no rodapé
-
-🔵 Parte 2 — Experiência Prática II (Versão 2.0)
-Objetivo
-Transformar o site institucional em uma plataforma web completa para ONGs, aplicando CSS3 avançado, design system escalável, interatividade com JavaScript puro e responsividade profissional.
-
-O que mudou em relação à v1.0
-1. Novas páginas
-Página	Antes	Agora
-index.html	Existia	Reestruturada com hero, sobre, projetos em destaque, impacto, carrossel e CTA
-projetos.html	Estática	Ganhou filtros dinâmicos por categoria
-doacao.html	❌ Não existia	Nova — formulário de captação
-voluntario.html	Era cadastro.html	Renomeada e reorganizada
-2. Design system implementado
-Tokens em :root cobrindo:
-
-Cores — marca, neutras, feedback (erro, sucesso, aviso, info)
-
-Tipografia — escala fluida com clamp()
-
-Espaçamento — escala de 8 passos (--sp-1 a --sp-8)
-
-Raios, sombras, transições — reutilizáveis
-
-Layout — largura máxima, altura do header
-
-3. Metodologia BEM
-Todas as classes reescritas como Block__Element--Modifier:
-
-css
-.header__inner
-.nav__link--cta
-.card__title
-.project-card__badge--active
-4. CSS3 avançado
-Grid para layout macro, Flexbox para componentes
-
-clamp() para tipografia fluida
-
-aspect-ratio em imagens
-
-backdrop-filter no header sticky
-
-prefers-reduced-motion respeitado
-
-:user-invalid e :user-valid em formulários
-
-Transições e microanimações em botões, cards e links
-
-5. JavaScript interativo
-main.js:
-
-Menu hamburger responsivo (com aria-expanded, fecha com Esc)
-
-Filtros de projetos por categoria (com aria-pressed)
-
-Carrossel de depoimentos (autoplay pausável, teclado, dots)
-
-Contadores animados com IntersectionObserver
-
-Sistema de toast para feedback global
-
-validacao.js:
-
-Máscaras: CPF, telefone, CEP, cartão, validade
-
-Validação de CPF com dígitos verificadores
-
-Validação de cartão com algoritmo de Luhn
-
-Autopreenchimento de cidade via ViaCEP
-
-Barra de progresso animada
-
-Mensagens de erro via data-error-for
-
-6. Acessibilidade reforçada
-aria-pressed nos filtros
-
-aria-live="polite" no toast
-
-aria-current no carrossel
-
-Foco visível customizado
-
-Navegação por teclado no carrossel e menu
-
-7. Responsividade
-Três breakpoints:
-
-Breakpoint	Mudança
-860px	Menu hamburger; hero em 1 coluna
-720px	Grids empilham; footer vira coluna
-520px	Carrossel empilha; botões full-width
-8. Interatividade em formulários
-Validação em 3 camadas (HTML + setCustomValidity + JS)
-
-Feedback visual (borda verde/vermelha)
-
-Barra de progresso
-
-Estado "Enviando..." no botão
-
-Toast de confirmação
-
-Estrutura final da v2.0
 text
-pratica-frontend-1-CC/
-├── index.html
-├── projetos.html
-├── doacao.html
-├── voluntario.html
-├── css/
-│   └── style.css
-├── js/
-│   ├── main.js
-│   └── validacao.js
-└── assets/
-    └── img/
-        ├── hero/                          ← Imagem do hero
-        ├── icones/sementes_do_amanha_logo.svg
-        ├── og/ (5 ícones de redes sociais)
-        └── avatar/avatar-chandler.jpg
+python -m http.server 8000
+Com Node:
 
-## 🧩 Decisões técnicas relevantes
-Grid para layout, Flex para componentes — cada um no seu melhor caso
+text
+npx serve -s .
+Depois acesse http://localhost:8000.
 
-data-* para seletores JS — separa estilo de comportamento
+## ✅ Roteiro de teste
+Navegue entre as 4 views e confirme que a URL muda sem recarregar.
 
-Toast customizado em vez de alert()
+Use os botões voltar/avançar do navegador.
 
-Luhn para cartão — algoritmo padrão da indústria
+Acesse uma URL inexistente (ex.: /xyz) e veja a view 404.
 
-IntersectionObserver para contadores — economia de CPU
+Em /projetos, teste os filtros por categoria.
 
-prefers-reduced-motion — acessibilidade
+Em /doacao, digite CPF 111.111.111-11 (inválido) e 111.444.777-35 (válido).
 
-clamp() para tipografia — menos media queries
+Digite CEP 01001000 e veja o preenchimento automático da cidade.
 
-### 🔮 Futuras atualizações
-Seção reservada para registrar a evolução do projeto nas próximas etapas.
+Use cartão 4111 1111 1111 1111 para passar no Luhn.
 
-### 🎯 Curto prazo
-□ Popular a pasta assets/img/hero/ com a imagem real (foto da horta comunitária)
-□ Gerar variações responsivas do hero (480w, 800w, 1200w) em .webp e .avif
-□ Adicionar og:image para compartilhamento em redes sociais
-□ Criar favicon.ico além do SVG para navegadores antigos
-□ Revisar contraste de cores para conformidade WCAG AA
+Preencha metade do formulário, recarregue a página e veja o rascunho voltar.
 
-### 🛠️ Médio prazo
-□ Backend real para persistir doações e cadastros (Node.js + Express ou similar)
-□ Integração de pagamento (Pix, boleto, cartão) via gateway
-□ Autenticação de usuários voluntários (login/cadastro persistente)
-□ Dashboard administrativo para a ONG gerenciar doações e voluntários
-□ Painel de transparência com gráficos dinâmicos dos recursos aplicados
-□ Blog ou área de notícias com CMS simples
-□ Formulário de contato com envio por e-mail
+Envie o formulário e confira o localStorage:
+JSON.parse(localStorage.getItem('sementes:v1:doacoes')).
 
-### 🚀 Longo prazo ###
-□ Modo escuro automático com prefers-color-scheme
-□ PWA (Progressive Web App) com service worker e instalação offline
-□ Internacionalização (i18n) — português, inglês, espanhol
-□ Acessibilidade AAA — auditoria completa com leitores de tela
-□ Testes automatizados (Jest + Playwright)
-□ CI/CD com deploy automático
-□ Analytics respeitando privacidade (Plausible ou similar)
-□ Integração com redes sociais — feed do Instagram no rodapé
-□ Área logada do doador com histórico de contribuições
-□ Gamificação para voluntários (badges, ranking de horas)
+## 🔮 Futuras atualizações
+### Curto prazo:
 
-### 💡 Ideias em avaliação ###
-Migração para um framework (Astro, Next.js) mantendo a base HTML/CSS
+Popular assets/img/hero/ com a imagem real e gerar variações responsivas em WebP e AVIF.
 
-Uso de @container queries para responsividade baseada em componente
+Adicionar og:image para compartilhamento em redes sociais.
 
-Adoção de @layer para organizar a cascata CSS
+Criar favicon.ico além do SVG, para navegadores antigos.
 
-Testes de acessibilidade com axe-core no pipeline
+Revisar contraste de cores para conformidade WCAG AA.
 
-Documentação do design system em Storybook ou página própria
+### Médio prazo:
 
-## 🚀 Como rodar o projeto ## 
-Baixe ou clone a pasta pratica-frontend-1-CC/
+Backend real para persistir doações e cadastros (Node.js + Express ou similar).
 
-Abra index.html no navegador (duplo clique)
+Integração de pagamento (Pix, boleto, cartão) via gateway.
 
-Navegue entre as páginas pelo menu
+Painel administrativo da ONG para gerenciar doações e voluntários.
 
-Teste:
+Painel de transparência com gráficos dinâmicos dos recursos aplicados.
 
-Redimensione a janela para ver o menu hamburger
+Blog ou área de notícias com CMS simples.
 
-Clique nos filtros em projetos.html
+### Longo prazo:
 
-Navegue no carrossel com setas do teclado
+Modo escuro automático com prefers-color-scheme.
 
-Preencha doacao.html com CPF 111.444.777-35 e cartão 4111 1111 1111 1111
+PWA com service worker e instalação offline.
 
-Veja a barra de progresso subir conforme preenche
+Internacionalização (i18n) em português, inglês e espanhol.
 
-## 📌 Pendências conhecidas ##
-Pasta assets/img/hero/ precisa ser populada com a imagem real
+Testes automatizados (Jest + Playwright).
 
-Integração real de pagamento (a submissão é simulada)
+CI/CD com deploy automático.
 
-Backend para persistir doações e cadastros
+#### 👤 Autor
 
-og:image para compartilhamento em redes sociais
-
-👤 Autor
 Maicon Amaral
-Projeto desenvolvido como parte da disciplina de Desenvolvimento Front-end — Experiências Práticas I e II.
-
-Versão atual: 2.0
-Data: 2025
-Licença: CC BY-SA 4.0
+Projeto desenvolvido como parte da disciplina de Desenvolvimento Front-end — Experiências Práticas I, II e III.

@@ -1,36 +1,15 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Seja voluntário da ONG Sementes do Amanhã.">
-  <title>Seja Voluntário — Sementes do Amanhã</title>
-  <link rel="icon" type="image/svg+xml" href="assets/img/icones/sementes_do_amanha_logo.svg">
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+/* =========================================================
+   voluntario.js — formulário de cadastro de voluntários
+   ========================================================= */
 
-  <a class="skip-link" href="#main">Pular para o conteúdo principal</a>
+import { mount, qs } from '../utils/dom.js';
+import { storage } from '../storage.js';
+import { initForms } from '../forms/feedback.js';
+import { initMasksAndValidation } from '../forms/validacao.js';
 
-  <header class="header">
-    <div class="container header__inner">
-      <a class="header__logo" href="index.html" aria-label="Sementes do Amanhã — página inicial">
-        <img src="assets/img/icones/sementes_do_amanha_logo.svg" alt="Logotipo Sementes do Amanhã" width="160" height="44">
-      </a>
-      <button class="header__toggle" type="button" aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menu"><span class="sr-only">Menu</span></button>
-      <nav class="nav" id="menu-principal" data-open="false" aria-label="Navegação principal">
-        <ul class="nav__list">
-          <li><a class="nav__link" href="index.html">Início</a></li>
-          <li><a class="nav__link" href="projetos.html">Projetos</a></li>
-          <li><a class="nav__link" href="doacao.html">Doe Agora</a></li>
-          <li><a class="nav__link nav__link--cta" href="voluntario.html" aria-current="page">Seja Voluntário</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <main id="main">
-
+export function renderVoluntario(container) {
+  const wrapper = document.createElement('div');
+  wrapper.innerHTML = `
     <section class="section" aria-labelledby="voluntario-title">
       <div class="container">
         <header class="section__header section__header--center">
@@ -39,25 +18,20 @@
         </header>
 
         <form class="form" id="form-voluntario" novalidate>
-          <div class="form__progress" aria-hidden="true">
-            <div class="form__progress-fill" data-progress></div>
-          </div>
+          <div class="form__progress" aria-hidden="true"><div class="form__progress-fill" data-progress></div></div>
 
           <fieldset class="form__fieldset">
             <legend class="form__legend">Dados pessoais</legend>
-
             <div class="form__field">
               <label class="form__label" for="v-nome">Nome completo *</label>
               <input class="form__input" type="text" id="v-nome" name="nome" required minlength="3" autocomplete="name">
               <span class="form__error" data-error-for="v-nome"></span>
             </div>
-
             <div class="form__field">
               <label class="form__label" for="v-email">E-mail *</label>
               <input class="form__input" type="email" id="v-email" name="email" required autocomplete="email">
               <span class="form__error" data-error-for="v-email"></span>
             </div>
-
             <div class="form__row">
               <div class="form__field">
                 <label class="form__label" for="v-cpf">CPF *</label>
@@ -74,7 +48,6 @@
 
           <fieldset class="form__fieldset">
             <legend class="form__legend">Endereço</legend>
-
             <div class="form__row">
               <div class="form__field">
                 <label class="form__label" for="v-cep">CEP *</label>
@@ -91,7 +64,6 @@
 
           <fieldset class="form__fieldset">
             <legend class="form__legend">Disponibilidade</legend>
-
             <div class="form__row">
               <div class="form__field">
                 <label class="form__label" for="v-area">Área de interesse *</label>
@@ -119,7 +91,6 @@
                 <span class="form__error" data-error-for="v-turno"></span>
               </div>
             </div>
-
             <div class="form__field">
               <label class="form__label" for="v-mensagem">Mensagem (opcional)</label>
               <textarea class="form__textarea" id="v-mensagem" name="mensagem" rows="4" placeholder="Conte um pouco sobre você."></textarea>
@@ -138,48 +109,14 @@
         </form>
       </div>
     </section>
+  `;
 
-  </main>
+  mount(container, wrapper);
 
-  <footer class="footer">
-    <div class="container">
-      <div class="footer__grid">
-        <div>
-          <h2 class="footer__title">Contato</h2>
-          <address>
-            Rua das Acácias, 240 — Vila Nova<br>
-            São Paulo/SP — CEP 01234-567<br>
-            <a href="mailto:contato@sementesdoamanha.org.br">contato@sementesdoamanha.org.br</a><br>
-            <a href="tel:+551140028922">(11) 4002-8922</a>
-          </address>
-        </div>
-        <nav aria-labelledby="footer-mapa">
-          <h2 class="footer__title" id="footer-mapa">Mapa do site</h2>
-          <ul class="footer__list">
-            <li><a href="index.html">Início</a></li>
-            <li><a href="projetos.html">Projetos</a></li>
-            <li><a href="doacao.html">Doe Agora</a></li>
-            <li><a href="voluntario.html">Seja Voluntário</a></li>
-          </ul>
-        </nav>
-        <div>
-          <h2 class="footer__title">Redes sociais</h2>
-          <ul class="social">
-            <li><a class="social__link" href="#" aria-label="Facebook"><img src="assets/img/og/facebook.png" alt="" width="20" height="20" loading="lazy"></a></li>
-            <li><a class="social__link" href="#" aria-label="Instagram"><img src="assets/img/og/instagram.png" alt="" width="20" height="20" loading="lazy"></a></li>
-            <li><a class="social__link" href="#" aria-label="LinkedIn"><img src="assets/img/og/linkedin.png" alt="" width="20" height="20" loading="lazy"></a></li>
-            <li><a class="social__link" href="#" aria-label="YouTube"><img src="assets/img/og/youtube.png" alt="" width="20" height="20" loading="lazy"></a></li>
-            <li><a class="social__link" href="#" aria-label="WhatsApp"><img src="assets/img/og/whatsapp.png" alt="" width="20" height="20" loading="lazy"></a></li>
-          </ul>
-        </div>
-      </div>
-      <p class="footer__bottom">© 2025 Sementes do Amanhã. CNPJ 12.345.678/0001-90.</p>
-    </div>
-  </footer>
-
-  <div class="toast" role="status" aria-live="polite" data-toast></div>
-
-  <script src="js/main.js" defer></script>
-  <script src="js/validacao.js" defer></script>
-</body>
-</html>
+  const form = qs('#form-voluntario', wrapper);
+  initMasksAndValidation(form);
+  initForms(form, {
+    entity: 'voluntario',
+    onSave: (dados) => storage.addVoluntario(dados),
+  });
+}
