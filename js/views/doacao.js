@@ -1,5 +1,5 @@
 /* =========================================================
-   doacao.js â€” formulÃ¡rio de doaÃ§Ã£o
+   doacao.js — formulário de doação
    ========================================================= */
 
 import { mount, qs } from '../utils/dom.js';
@@ -21,8 +21,8 @@ export function renderDoacao(container) {
           <div class="form__progress" aria-hidden="true"><div class="form__progress-fill" data-progress></div></div>
 
           <fieldset class="form__fieldset">
-            <legend class="form__legend">1. Valor da doaÃ§Ã£o</legend>
-            <div class="donation-values" role="radiogroup" aria-label="Valor da doaÃ§Ã£o">
+            <legend class="form__legend">1. Valor da doação</legend>
+            <div class="donation-values" role="radiogroup" aria-label="Valor da doação">
               <input type="radio" id="v30" name="valor" value="30" required>
               <label for="v30">R$ 30</label>
               <input type="radio" id="v50" name="valor" value="50">
@@ -38,10 +38,10 @@ export function renderDoacao(container) {
               <span class="form__error" data-error-for="valor-outro"></span>
             </div>
             <div class="form__field">
-              <label class="form__label" for="recorrencia">Tipo de doaÃ§Ã£o *</label>
+              <label class="form__label" for="recorrencia">Tipo de doação *</label>
               <select class="form__select" id="recorrencia" name="recorrencia" required>
                 <option value="">Selecione</option>
-                <option value="unica">Ãšnica</option>
+                <option value="unica">Única</option>
                 <option value="mensal">Mensal</option>
               </select>
               <span class="form__error" data-error-for="recorrencia"></span>
@@ -72,7 +72,7 @@ export function renderDoacao(container) {
           <fieldset class="form__fieldset">
             <legend class="form__legend">3. Pagamento</legend>
             <div class="form__field">
-              <label class="form__label" for="cartao-numero">NÃºmero do cartÃ£o *</label>
+              <label class="form__label" for="cartao-numero">Número do cartão *</label>
               <input class="form__input" type="text" id="cartao-numero" name="cartao" required inputmode="numeric" maxlength="19" placeholder="0000 0000 0000 0000" autocomplete="cc-number">
               <span class="form__error" data-error-for="cartao-numero"></span>
             </div>
@@ -92,11 +92,11 @@ export function renderDoacao(container) {
 
           <div class="form__checkbox">
             <input type="checkbox" id="doacao-termos" name="termos" required>
-            <label for="doacao-termos">Li e aceito os termos de uso e a polÃ­tica de privacidade. *</label>
+            <label for="doacao-termos">Li e aceito os termos de uso e a política de privacidade. *</label>
           </div>
 
           <div class="form__actions">
-            <button class="btn btn--primary btn--lg" type="submit">Confirmar doaÃ§Ã£o</button>
+            <button class="btn btn--primary btn--lg" type="submit">Confirmar doação</button>
             <button class="btn btn--ghost" type="reset">Limpar</button>
           </div>
         </form>

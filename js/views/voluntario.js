@@ -1,5 +1,5 @@
 /* =========================================================
-   voluntario.js â€” formulÃ¡rio de cadastro de voluntÃ¡rios
+   voluntario.js — formulário de cadastro de voluntários
    ========================================================= */
 
 import { mount, qs } from '../utils/dom.js';
@@ -13,7 +13,7 @@ export function renderVoluntario(container) {
     <section class="section" aria-labelledby="voluntario-title">
       <div class="container">
         <header class="section__header section__header--center">
-          <h1 class="section__title" id="voluntario-title">Seja voluntÃ¡rio</h1>
+          <h1 class="section__title" id="voluntario-title">Seja voluntário</h1>
           <p class="section__subtitle">Doe um pouco do seu tempo e transforme realidades.</p>
         </header>
 
@@ -47,7 +47,7 @@ export function renderVoluntario(container) {
           </fieldset>
 
           <fieldset class="form__fieldset">
-            <legend class="form__legend">EndereÃ§o</legend>
+            <legend class="form__legend">Endereço</legend>
             <div class="form__row">
               <div class="form__field">
                 <label class="form__label" for="v-cep">CEP *</label>
@@ -66,14 +66,14 @@ export function renderVoluntario(container) {
             <legend class="form__legend">Disponibilidade</legend>
             <div class="form__row">
               <div class="form__field">
-                <label class="form__label" for="v-area">Ãrea de interesse *</label>
+                <label class="form__label" for="v-area">Área de interesse *</label>
                 <select class="form__select" id="v-area" name="area" required>
                   <option value="">Selecione</option>
-                  <option value="educacao">EducaÃ§Ã£o</option>
-                  <option value="alimentacao">SeguranÃ§a alimentar</option>
-                  <option value="renda">GeraÃ§Ã£o de renda</option>
-                  <option value="saude">SaÃºde</option>
-                  <option value="comunicacao">ComunicaÃ§Ã£o</option>
+                  <option value="educacao">Educação</option>
+                  <option value="alimentacao">Segurança alimentar</option>
+                  <option value="renda">Geração de renda</option>
+                  <option value="saude">Saúde</option>
+                  <option value="comunicacao">Comunicação</option>
                   <option value="administrativo">Apoio administrativo</option>
                 </select>
                 <span class="form__error" data-error-for="v-area"></span>
@@ -82,24 +82,24 @@ export function renderVoluntario(container) {
                 <label class="form__label" for="v-turno">Disponibilidade *</label>
                 <select class="form__select" id="v-turno" name="turno" required>
                   <option value="">Selecione</option>
-                  <option value="manha">ManhÃ£</option>
+                  <option value="manha">Manhã</option>
                   <option value="tarde">Tarde</option>
                   <option value="noite">Noite</option>
                   <option value="fds">Fins de semana</option>
-                  <option value="flexivel">FlexÃ­vel</option>
+                  <option value="flexivel">Flexível</option>
                 </select>
                 <span class="form__error" data-error-for="v-turno"></span>
               </div>
             </div>
             <div class="form__field">
               <label class="form__label" for="v-mensagem">Mensagem (opcional)</label>
-              <textarea class="form__textarea" id="v-mensagem" name="mensagem" rows="4" placeholder="Conte um pouco sobre vocÃª."></textarea>
+              <textarea class="form__textarea" id="v-mensagem" name="mensagem" rows="4" placeholder="Conte um pouco sobre você."></textarea>
             </div>
           </fieldset>
 
           <div class="form__checkbox">
             <input type="checkbox" id="v-termos" name="termos" required>
-            <label for="v-termos">Li e aceito os termos de uso e a polÃ­tica de privacidade. *</label>
+            <label for="v-termos">Li e aceito os termos de uso e a política de privacidade. *</label>
           </div>
 
           <div class="form__actions">
