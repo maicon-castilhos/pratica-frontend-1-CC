@@ -1,4 +1,4 @@
-﻿/* =========================================================
+/* =========================================================
    router.js — roteamento SPA com Hash API para GitHub Pages
    - Intercepta cliques em links internos (data-link)
    - Trata navegação por hashchange (voltar/avançar)
