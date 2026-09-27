@@ -1,7 +1,7 @@
-/* =========================================================
-   router.js — roteamento SPA com History API
+﻿/* =========================================================
+   router.js — roteamento SPA com Hash API para GitHub Pages
    - Intercepta cliques em links internos (data-link)
-   - Trata navegação por popstate (voltar/avançar)
+   - Trata navegação por hashchange (voltar/avançar)
    - Delega a renderização para a view correta
    - Gerencia foco e atualiza aria-current na navegação
    ========================================================= */
@@ -29,7 +29,7 @@ const NOT_FOUND = {
           <h1 class="section__title" id="nf-title">Página não encontrada</h1>
           <p class="section__subtitle">O endereço acessado não existe.</p>
           <p class="mt-6">
-            <a class="btn btn--primary" href="/" data-link>Voltar para a página inicial</a>
+            <a class="btn btn--primary" href="#/" data-link>Voltar para a página inicial</a>
           </p>
         </div>
       </section>
@@ -44,16 +44,18 @@ const NOT_FOUND = {
 const main = () => document.getElementById('main');
 
 function normalize(path) {
+  if (!path) return '/';
+  // Remove o '#' do início se existir
+  if (path.startsWith('#')) path = path.slice(1);
   if (!path.startsWith('/')) path = '/' + path;
   if (path.length > 1 && path.endsWith('/')) path = path.slice(0, -1);
-  // Trata /index.html como raiz
   if (path === '/index.html') path = '/';
   return path;
 }
 
 function updateActiveLink(path) {
   document.querySelectorAll('a[data-link]').forEach((a) => {
-    const href = normalize(new URL(a.href, location.origin).pathname);
+    const href = normalize(a.getAttribute('href'));
     if (href === path) {
       a.setAttribute('aria-current', 'page');
     } else {
@@ -67,14 +69,14 @@ function updateActiveLink(path) {
    --------------------------------------------------------- */
 export function navigate(path, { replace = false } = {}) {
   const clean = normalize(path);
-  const route = routes[clean] || NOT_FOUND;
-
+  
   if (replace) {
-    history.replaceState({ path: clean }, '', clean);
+    history.replaceState(null, '', `#${clean === '/' ? '' : clean}`);
   } else {
-    history.pushState({ path: clean }, '', clean);
+    location.hash = clean === '/' ? '' : clean;
   }
 
+  const route = routes[clean] || NOT_FOUND;
   const container = main();
   container.innerHTML = '';
   route.render(container);
@@ -92,7 +94,6 @@ export function navigate(path, { replace = false } = {}) {
    Interceptação de cliques em links internos
    --------------------------------------------------------- */
 function onDocumentClick(event) {
-  // Ignora cliques com modificadores (abrir em nova aba, etc.)
   if (event.defaultPrevented) return;
   if (event.button !== 0) return;
   if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
@@ -101,18 +102,16 @@ function onDocumentClick(event) {
   if (!link) return;
   if (link.target === '_blank' || link.hasAttribute('download')) return;
 
-  const url = new URL(link.href, location.origin);
-  if (url.origin !== location.origin) return;
-
   event.preventDefault();
-  navigate(url.pathname);
+  const href = link.getAttribute('href');
+  navigate(href);
 }
 
 /* ---------------------------------------------------------
-   Botão voltar/avançar do navegador
+   Botão voltar/avançar do navegador (HashChange)
    --------------------------------------------------------- */
-function onPopState() {
-  const path = normalize(location.pathname);
+function onHashChange() {
+  const path = normalize(location.hash);
   const route = routes[path] || NOT_FOUND;
   const container = main();
   container.innerHTML = '';
@@ -132,13 +131,8 @@ function onPopState() {
    --------------------------------------------------------- */
 export function initRouter() {
   document.addEventListener('click', onDocumentClick);
-  window.addEventListener('popstate', onPopState);
+  window.addEventListener('hashchange', onHashChange);
 
-  // Renderiza a rota atual ao carregar a página
-  const initial = normalize(location.pathname);
-  const route = routes[initial] || NOT_FOUND;
-  const container = main();
-  route.render(container);
-  document.title = route.title;
-  updateActiveLink(initial);
+  // Renderiza a rota atual ao carregar a página (baseado no hash)
+  onHashChange();
 }
