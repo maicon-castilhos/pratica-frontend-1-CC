@@ -45,7 +45,6 @@ const main = () => document.getElementById('main');
 
 function normalize(path) {
   if (!path) return '/';
-  // Remove o '#' do início se existir
   if (path.startsWith('#')) path = path.slice(1);
   if (!path.startsWith('/')) path = '/' + path;
   if (path.length > 1 && path.endsWith('/')) path = path.slice(0, -1);
@@ -132,7 +131,5 @@ function onHashChange() {
 export function initRouter() {
   document.addEventListener('click', onDocumentClick);
   window.addEventListener('hashchange', onHashChange);
-
-  // Renderiza a rota atual ao carregar a página (baseado no hash)
   onHashChange();
 }
