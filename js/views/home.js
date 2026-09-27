@@ -1,5 +1,5 @@
-/* =========================================================
-   home.js — view da página inicial
+﻿/* =========================================================
+   home.js â€” view da pÃ¡gina inicial
    ========================================================= */
 
 import { renderTemplate } from "../templates.js";
@@ -9,46 +9,46 @@ import { storage } from "../storage.js";
 const projetosDestaque = [
   {
     status: "ativo",
-    title: "Educação que abre portas",
-    text: "Reforço escolar e preparação para o mercado.",
+    title: "EducaÃ§Ã£o que abre portas",
+    text: "ReforÃ§o escolar e preparaÃ§Ã£o para o mercado.",
     publico: "120 estudantes",
     local: "Vila Nova",
   },
   {
     status: "ativo",
-    title: "Segurança alimentar",
-    text: "Hortas comunitárias e distribuição de cestas.",
-    publico: "300 famílias",
+    title: "SeguranÃ§a alimentar",
+    text: "Hortas comunitÃ¡rias e distribuiÃ§Ã£o de cestas.",
+    publico: "300 famÃ­lias",
     local: "5 comunidades",
   },
   {
     status: "ativo",
-    title: "Geração de renda",
-    text: "Capacitação e acompanhamento para formalização.",
+    title: "GeraÃ§Ã£o de renda",
+    text: "CapacitaÃ§Ã£o e acompanhamento para formalizaÃ§Ã£o.",
     publico: "80 mulheres",
-    local: "Núcleo Central",
+    local: "NÃºcleo Central",
   },
 ];
 
 const depoimentos = [
   {
-    avatar: "assets/img/avatar/avatar-chandler.jpg",
+    avatar: "./assets/img/avatar/avatar-chandler.jpg",
     alt: "Retrato de Chandler Mascarenhas",
-    quote: "“Entrei como aluno do reforço e hoje sou monitor da mesma turma.”",
-    author: "— Chandler Mascarenhas, Vila Nova",
+    quote: "â€œEntrei como aluno do reforÃ§o e hoje sou monitor da mesma turma.â€",
+    author: "â€” Chandler Mascarenhas, Vila Nova",
   },
   {
-    avatar: "assets/img/avatar/avatar-chandler.jpg",
+    avatar: "./assets/img/avatar/avatar-chandler.jpg",
     alt: "Retrato de Ana Ribeiro",
     quote:
-      "“A horta comunitária virou fonte de renda e orgulho para a nossa rua.”",
-    author: "— Ana Ribeiro, Jardim das Flores",
+      "â€œA horta comunitÃ¡ria virou fonte de renda e orgulho para a nossa rua.â€",
+    author: "â€” Ana Ribeiro, Jardim das Flores",
   },
   {
-    avatar: "assets/img/avatar/avatar-chandler.jpg",
-    alt: "Retrato de João Pereira",
-    quote: "“Como voluntário, aprendi mais do que ensinei.”",
-    author: "— João Pereira, voluntário",
+    avatar: "./assets/img/avatar/avatar-chandler.jpg",
+    alt: "Retrato de JoÃ£o Pereira",
+    quote: "â€œComo voluntÃ¡rio, aprendi mais do que ensinei.â€",
+    author: "â€” JoÃ£o Pereira, voluntÃ¡rio",
   },
 ];
 
@@ -58,17 +58,17 @@ export function renderHome(container) {
     <section class="hero" aria-labelledby="hero-title">
       <div class="container hero__grid">
         <div>
-          <span class="hero__eyebrow">Desde 2009 • Terceiro setor</span>
+          <span class="hero__eyebrow">Desde 2009 â€¢ Terceiro setor</span>
           <h1 class="hero__title" id="hero-title">Transformamos <em>engajamento</em> em oportunidades reais</h1>
-          <p class="hero__lead">Atuamos em comunidades vulneráveis com projetos de educação, segurança alimentar e geração de renda.</p>
+          <p class="hero__lead">Atuamos em comunidades vulnerÃ¡veis com projetos de educaÃ§Ã£o, seguranÃ§a alimentar e geraÃ§Ã£o de renda.</p>
           <div class="hero__actions">
-            <a class="btn btn--primary btn--lg" href="/doacao" data-link>Fazer uma doação</a>
+            <a class="btn btn--primary btn--lg" href="/doacao" data-link>Fazer uma doaÃ§Ã£o</a>
             <a class="btn btn--secondary btn--lg" href="/projetos" data-link>Ver projetos</a>
           </div>
         </div>
         <figure class="hero__figure">
-          <img src="assets/img/hero/comunidade-800.jpg" alt="Grupo reunido em círculo na horta comunitária." width="800" height="600" loading="eager" fetchpriority="high" decoding="async">
-          <figcaption class="hero__caption">Oficina de horta comunitária — Vila Nova, 2024.</figcaption>
+          <img src="./assets/img/hero/comunidade-800.jpg" alt="Grupo reunido em cÃ­rculo na horta comunitÃ¡ria." width="800" height="600" loading="eager" fetchpriority="high" decoding="async">
+          <figcaption class="hero__caption">Oficina de horta comunitÃ¡ria â€” Vila Nova, 2024.</figcaption>
         </figure>
       </div>
     </section>
@@ -77,12 +77,12 @@ export function renderHome(container) {
       <div class="container">
         <header class="section__header">
           <h2 class="section__title" id="sobre-title">Quem somos</h2>
-          <p class="section__subtitle">Mudança construída com método, escuta e continuidade.</p>
+          <p class="section__subtitle">MudanÃ§a construÃ­da com mÃ©todo, escuta e continuidade.</p>
         </header>
         <div class="grid grid--3">
-          <article class="card"><span class="card__icon" aria-hidden="true">🎯</span><h3 class="card__title">Missão</h3><p class="card__text">Ampliar o acesso a educação, alimentação digna e trabalho.</p></article>
-          <article class="card"><span class="card__icon" aria-hidden="true">🌱</span><h3 class="card__title">Visão</h3><p class="card__text">Comunidades autônomas, capazes de decidir sobre o próprio futuro.</p></article>
-          <article class="card"><span class="card__icon" aria-hidden="true">💚</span><h3 class="card__title">Valores</h3><p class="card__text">Transparência, protagonismo local, equidade e impacto mensurável.</p></article>
+          <article class="card"><span class="card__icon" aria-hidden="true">ðŸŽ¯</span><h3 class="card__title">MissÃ£o</h3><p class="card__text">Ampliar o acesso a educaÃ§Ã£o, alimentaÃ§Ã£o digna e trabalho.</p></article>
+          <article class="card"><span class="card__icon" aria-hidden="true">ðŸŒ±</span><h3 class="card__title">VisÃ£o</h3><p class="card__text">Comunidades autÃ´nomas, capazes de decidir sobre o prÃ³prio futuro.</p></article>
+          <article class="card"><span class="card__icon" aria-hidden="true">ðŸ’š</span><h3 class="card__title">Valores</h3><p class="card__text">TransparÃªncia, protagonismo local, equidade e impacto mensurÃ¡vel.</p></article>
         </div>
       </div>
     </section>
@@ -100,11 +100,11 @@ export function renderHome(container) {
     <section class="section" aria-labelledby="impacto-title">
       <div class="container">
         <header class="section__header section__header--center">
-          <h2 class="section__title" id="impacto-title">Nosso impacto em números</h2>
+          <h2 class="section__title" id="impacto-title">Nosso impacto em nÃºmeros</h2>
         </header>
         <dl class="stats">
           <div class="stat"><dt>Pessoas atendidas</dt><dd data-count="4820">0</dd></div>
-          <div class="stat"><dt>Voluntários ativos</dt><dd data-count="312">0</dd></div>
+          <div class="stat"><dt>VoluntÃ¡rios ativos</dt><dd data-count="312">0</dd></div>
           <div class="stat"><dt>Projetos em andamento</dt><dd data-count="7">0</dd></div>
           <div class="stat"><dt>Comunidades parceiras</dt><dd data-count="12">0</dd></div>
         </dl>
@@ -119,9 +119,9 @@ export function renderHome(container) {
         <div class="carousel" data-carousel>
           <div class="carousel__viewport"><div class="carousel__track" data-track></div></div>
           <div class="carousel__controls">
-            <button class="carousel__btn" type="button" data-prev aria-label="Depoimento anterior">‹</button>
+            <button class="carousel__btn" type="button" data-prev aria-label="Depoimento anterior">â€¹</button>
             <div class="carousel__dots" data-dots></div>
-            <button class="carousel__btn" type="button" data-next aria-label="Próximo depoimento">›</button>
+            <button class="carousel__btn" type="button" data-next aria-label="PrÃ³ximo depoimento">â€º</button>
           </div>
         </div>
       </div>
